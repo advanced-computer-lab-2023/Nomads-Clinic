@@ -1,0 +1,229 @@
+/* google font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap');
+
+/* layout */
+:root {
+  --primary: #1aac83;
+  --error: #e7195a;
+}
+body{
+  background: #f1f1f1;
+  margin: 0;
+  font-family: "Poppins";
+}
+header{
+  background: #fff;
+}
+header .container{
+  max-width: 14000px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+header a {
+  color: #ffffff;
+  text-decoration: none;
+}
+.pages{
+  max-width: 1400px;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+/* homepage */
+.home{
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 100px;
+}
+.doctor-details, .admin-details, .patient-details{
+  background: #fff;
+  border-radius: 4px;
+  margin: 20px auto;
+  padding: 20px;
+  position: relative;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+}
+.doctor-details h4, .admin-details h4, .patient-details h4 {
+margin: 0 0 10px 0;
+font-size: 1.2em;
+color: var(--primary);
+}
+.doctor-details p, .admin-details p, .patient-details p {
+  margin: 0;
+  font-size: 0.9em;
+  color: #07522a;
+}
+.doctor-details span, .admin-details span, .patient-details span {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  background: #f1f1f1;
+  padding: 6px;
+  border-radius: 50%;
+  color: #333;
+}
+
+/* new admin form */
+label, input {
+  display: block;
+}
+input{
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+form button {
+  background: var(--primary);
+  border: 0;
+  color: #fff;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: "DM Serif Display";
+}
+button {
+  background: var(--primary);
+  border: 0;
+  color: #fff;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: "DM Serif Display";
+}
+.back-button{
+  padding-top: 80px;
+  padding-left: 50px;
+  font-family: "DM Serif Display";
+}
+.back-button button{
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 10);
+  background: #188a47d8;
+  width: 1300px;
+  height: 50px;
+  font-size: x-large;
+  font-family: "DM Serif Display";
+}
+div.error {
+  padding: 10px;
+  background: #ffefef;
+  border: 1px solid var(--primary);
+  color: var(--error);
+  border-radius: 4px;
+  margin: 20px 0;
+}
+input.error {
+  border: 1px solid var(--error);
+}
+/* navbar */
+nav{
+  display: flex;
+  align-items: center;
+}
+nav a{
+  margin-left: 10px;
+}
+nav button{
+  background: #fff;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-family: "Poppins";
+  cursor: pointer;
+  font-size: 1em;
+  margin-left: 10px;
+
+}
+span{
+  color:#fff;
+  padding: 40px;
+}
+
+/* auth forms */
+form.signup, form.login {
+  max-width: 400px;
+  color: #fff;
+  margin: 40px auto;
+  padding: 20px;
+  background: #1fc999;
+  border-radius: 4px;
+}
+.container{
+  background: #1fc999;
+}
+select{
+  width: 402px;
+  height: 40px;
+  background-color: #fff;
+  color: #333;
+  font-family: "Poppins";
+
+}
+.select{
+  padding-bottom: 10px;
+}
+.signup-login-button{
+  width: 390px;
+  font-family: "DM Serif Display";
+  font-size: large;
+}
+.admin-home, .guest-home{
+  padding: 10px 250px ;
+
+  }
+.home-button{
+padding: 20px;
+
+
+}
+.major-button{
+  font-size: xx-large;
+ border-color: #e7195a;
+  width: 600px;
+}
+.second{
+  cursor: pointer;
+  background: #f1f1f1;
+  padding: 6px;
+  color: #333;
+}
+.second2{
+  padding: 6px;
+  color: #333;
+}
+ .edit-button{
+  padding: 3px;
+ }
+ .search-options{
+  display: flex;
+  padding: auto;
+ }
+ .search-options-app{
+  display: flex;
+  padding: auto;
+  padding-top: 20px;
+ }
+ .status-doc{
+padding-left: 50px;
+ }
+ .checkbox-label{
+padding-right: 50px;
+ }
+ .book{
+  padding-top: 10px;
+ }
+ .back{
+  padding-top: 30px;
+ }
+ .date-date{
+  padding-right: 30px;
+ }
