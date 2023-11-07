@@ -68,7 +68,7 @@ export const useSignup = () => {
                     dispatch({ type: 'LOGIN', payload: json })
 
                     setIsLoading(false)
-                    navigate('/doctor-home')
+                    navigate('/not-approved-doctor')
                 }
 
         }
