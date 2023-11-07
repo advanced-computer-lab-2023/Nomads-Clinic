@@ -1,5 +1,5 @@
 const express= require('express')
-const { getPatients, getPatient, deletePatient, updatePatient, signupPatient,loginPatient } = require('../controllers/patientController')
+const { getPatients, getPatient, deletePatient, updatePatient,updatePatientPassword, signupPatient,loginPatient } = require('../controllers/patientController')
 const router= express.Router()
 
 //Get all patients
@@ -19,5 +19,10 @@ router.get('/', getPatients)
 
  //Update a patient
   router.patch('/:id',updatePatient)
+
+  router.patch('/changepassword/:id',updatePatientPassword)
+
+
+  
 
 module.exports= router

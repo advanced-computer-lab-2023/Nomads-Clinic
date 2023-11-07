@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { getApprovalDoctors, getDoctors, getDoctor, deleteDoctor, updateDoctor, signupDoctor, loginDoctor } = require('../controllers/doctorController')
+const { getApprovalDoctors, getDoctors, getDoctor, deleteDoctor, updateDoctor,updateDoctorPassword, signupDoctor, loginDoctor } = require('../controllers/doctorController')
 
 
 //Get doctors that are still not approved
@@ -23,5 +23,7 @@ router.delete('/:id', deleteDoctor)
 
 //Update a doctor
 router.patch('/:id', updateDoctor)
+
+router.patch('/changepassword/:id', updateDoctorPassword)
 
 module.exports = router

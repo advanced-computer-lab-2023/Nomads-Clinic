@@ -3,6 +3,9 @@ require('dotenv').config()
  const Patient = require('../models/patientModel')
  const mongoose= require('mongoose')
  const jwt= require('jsonwebtoken')
+ const bcrypt = require('bcrypt')
+ const validator= require('validator')
+
  
 
 
@@ -72,6 +75,32 @@ const updatePatient= async (req,res) => {
     }
     res.status(200).json(patient)
 }
+const updatePatientPassword = async (req, res) => {
+    const { id } = req.params;
+    const { password } = req.body; // Get the new password from the request body
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(404).json({ error: 'No such patient' });
+    }
+
+    if (!validator.isStrongPassword(password)) {
+        return res.status(400).json({ error: 'Password is not strong enough' });
+    }
+
+    const salt= await bcrypt.genSalt(10)
+    const hash= await bcrypt.hash(password,salt)
+
+    const patient = await Patient.findByIdAndUpdate(
+        { _id: id },
+        { password:hash } // Update the patient's password
+    );
+
+    if (!patient) {
+        return res.status(404).json({ error: 'No such patient' });
+    }
+
+    res.status(200).json(patient);
+};
 
 //login patient
 const loginPatient= async (req,res) => {
@@ -117,6 +146,7 @@ module.exports= {
     getPatient,
     deletePatient,
     updatePatient,
+    updatePatientPassword,
     signupPatient,
     loginPatient
 }

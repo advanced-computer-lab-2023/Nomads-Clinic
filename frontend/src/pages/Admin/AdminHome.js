@@ -30,6 +30,11 @@ const AdminHome = () => {
         <button>View Admins</button>
         </Link>
       </div>
+      <div className="home-button">
+        <Link to="/admin-change-password">
+        <button>Change Password</button>
+        </Link>
+      </div>
     </div>
 
   )

@@ -4,6 +4,7 @@ require('dotenv').config()
  const mongoose= require('mongoose')
  const jwt= require('jsonwebtoken')
  const bcrypt = require('bcrypt')
+ const validator= require('validator')
 
  
 
@@ -108,6 +109,35 @@ const updateAdmin= async (req,res) => {
     res.status(200).json(admin)
 }
 
+
+const updateAdminPassword = async (req, res) => {
+    const { id } = req.params;
+    const { password } = req.body; // Get the new password from the request body
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(404).json({ error: 'No such admin' });
+    }
+
+    if (!validator.isStrongPassword(password)) {
+        return res.status(400).json({ error: 'Password is not strong enough' });
+    }
+
+    const salt= await bcrypt.genSalt(10)
+    const hash= await bcrypt.hash(password,salt)
+
+    const admin = await Admin.findByIdAndUpdate(
+        { _id: id },
+        { password:hash } // Update the admin's password
+    );
+
+    if (!admin) {
+        return res.status(404).json({ error: 'No such admin' });
+    }
+
+    res.status(200).json(admin);
+};
+
+
 //login admin
 const loginAdmin = async (req,res) => {
 
@@ -155,6 +185,7 @@ module.exports= {
     getAdmin,
     deleteAdmin,
     updateAdmin,
+    updateAdminPassword,
     signupAdmin,
     loginAdmin
 }
