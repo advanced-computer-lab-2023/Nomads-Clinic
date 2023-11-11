@@ -13,7 +13,7 @@ const doctorRoutes= require('./routes/doctors')
 const adminRoutes = require('./routes/admins')
 const documentRoutes = require('./routes/documents')
 
-
+global.__basedir = __dirname;
 
 //express app
 const app= express() 
