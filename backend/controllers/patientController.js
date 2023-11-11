@@ -122,7 +122,7 @@ const loginPatient= async (req,res) => {
     }
 
 }
-//sinup new patient
+//signup new patient
 const signupPatient= async (req,res) => {
     const {username,firstName,lastName,email,password,dateOfBirth,gender,mobileNumber,emergencyContact}= req.body
 
