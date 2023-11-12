@@ -8,7 +8,7 @@ const fs = require('fs')
 //Upload a new Medical History Document for a patient
 const uploadPatientDocument= async (req,res) => {
     const isPatient = true
-    const userId = req.body.patientId
+    const userId = req.patient._id
     const document = req.file.filename
 
     if(!userId){
@@ -36,7 +36,7 @@ const uploadPatientDocument= async (req,res) => {
 
 //Get documents of a patient
 const getPatientDocuments= async (req,res) => {
-    const userId = req.params.id
+    const userId = req.patient._id
 
     if(!mongoose.Types.ObjectId.isValid(userId)){
         return res.status(404).json({error: 'No such patient'})
@@ -113,7 +113,7 @@ const uploadDoctorDocument= async (req,res) => {
 
 //Get documents of a doctor
 const getDoctorDocuments= async (req,res) => {
-    const userId = req.params.id
+    const userId = req.doctor._id
 
     if(!mongoose.Types.ObjectId.isValid(userId)){
         return res.status(404).json({error: 'No such doctor'})

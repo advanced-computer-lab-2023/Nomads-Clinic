@@ -30,6 +30,8 @@ import PatientViewHealthPackages from './pages/Patient/PatientViewHealthPackages
 import FamilyMemberForm from './components/Patient/FamilyMemberForm';
 import PatientBookAppointment from './pages/Patient/PatientBookAppointment';
 import PatientChangePassword from './pages/Patient/PatientChangePassword';
+import PatientViewMedicalHistory from './pages/Patient/PatientViewMedicalHistory';
+import MedicalHistoryForm from './components/Patient/MedicalHistoryForm';
 
 import Navbar from './components/Navbar';
 import Login from './pages/Login';
@@ -154,6 +156,14 @@ function App() {
             <Route
               path="/patient-change-password"
               element={<PatientChangePassword />}
+            />
+            <Route
+              path="/patient-view-medicalhistory"
+              element={<PatientViewMedicalHistory />}
+            />
+            <Route
+              path="/MedicalHistory-form"
+              element={<MedicalHistoryForm />}
             />
           </Routes>
         </div>

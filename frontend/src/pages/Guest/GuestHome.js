@@ -3,7 +3,7 @@
  const GuestHome = () =>{
     return(
         <div>
-        Guest Hoem
+        Guest Home
     </div>
 
 

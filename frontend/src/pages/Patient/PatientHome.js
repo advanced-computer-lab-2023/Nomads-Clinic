@@ -35,6 +35,11 @@ const PatientHome = () => {
           <button>Change Password</button>
         </Link>
       </div>
+      <div className="home-button">
+        <Link to="/patient-view-medicalhistory">
+          <button>Medical History</button>
+        </Link>
+      </div>
     </div>
 
   )
