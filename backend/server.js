@@ -11,7 +11,7 @@ const clinicPriceRoutes= require('./routes/clinicPrice')
 const patientRoutes= require('./routes/patients')
 const doctorRoutes= require('./routes/doctors')
 const adminRoutes = require('./routes/admins')
-const documentRoutes = require('./routes/documents')
+const healthRecordsRoutes = require('./routes/healthRecords')
 
 global.__basedir = __dirname;
 
@@ -34,7 +34,8 @@ const app= express()
  app.use('/api/patients',patientRoutes)
  app.use('/api/doctors',doctorRoutes)
  app.use('/api/admins',adminRoutes)
- app.use('/api/documents',documentRoutes)
+ app.use('/api/healthrecords',healthRecordsRoutes)
+ app.use('/uploads', express.static('uploads'));
 
 
 

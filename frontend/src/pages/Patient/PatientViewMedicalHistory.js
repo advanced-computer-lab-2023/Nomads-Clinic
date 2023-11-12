@@ -9,7 +9,7 @@ const PatientViewMedicalHistory = () => {
 
     useEffect(() => {
         const fetchMedicalHistory = async () => {
-            const response = await fetch('/api/document/patient', {
+            const response = await fetch('/api/healthrecords/patient', {
                 headers: {
                     'Authorization': `Bearer ${user.token}`
 

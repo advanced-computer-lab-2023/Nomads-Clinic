@@ -1,23 +1,40 @@
 import React, { useState } from 'react';
+import {useAuthContext} from '../../hooks/useAuthContext'
 
 
 const DocumentDetails = ({ document }) => {
 
     const [isExpanded, setIsExpanded] = useState(false);
+    const {user} = useAuthContext()
 
     const toggleExpand = () => {
         setIsExpanded(!isExpanded);
     };
 
-    const filePath = '/uploads/' + document.document;
+    const handleDelete = () => {
+        fetch('/api/healthrecords/' + document._id, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${user.token}`
+            },
+        }).then((response) => {
+            if (response.ok) {
+                window.location.reload();
+            }
+        });
+    }
+
+    const filePath = '/uploads/healthRecords/' + document.document;
     return (
-        <div className="doctor-details" onClick={toggleExpand}>
+        <div className="doctor-details" >
             {!isExpanded && (
                 <div>
                     <embed
                     src={filePath}
-                    width="1200px"
+                    width="300px"
                     height="600px"
+                    onClick={toggleExpand}
                     />
                 </div>
             )}
@@ -28,9 +45,11 @@ const DocumentDetails = ({ document }) => {
                     src={filePath}
                     width="100%"
                     height="100%"
+                    onClick={toggleExpand}
                     />
                 </div>
             )}
+            <span onClick={handleDelete} className="material-symbols-outlined">delete</span>
         </div>
     );
 };

@@ -4,7 +4,7 @@ import { useAuthContext } from '../../hooks/useAuthContext';
 import axios from 'axios'
 
 const MedicalHistoryForm = () => {
-  const user = useAuthContext()
+  const { user } = useAuthContext()
   const [error, setError] = useState(null)
   const [file, setFile] = useState(null)
   const [emptyFields, setEmptyFields] = useState([])
@@ -17,15 +17,17 @@ const MedicalHistoryForm = () => {
       setError('You must be logged in')
       return
     }
+    console.log(user.id)
+
     if (!file) {
       setError('You must choose a file')
       setEmptyFields(['file']);
       return
     }
-
+    
     const formData = new FormData()
     formData.append('document', file)
-    axios.post('/api/document/patient/upload', formData, {
+    axios.post('/api/healthRecords', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
         'Authorization': `Bearer ${user.token}`
@@ -35,6 +37,8 @@ const MedicalHistoryForm = () => {
     }).catch(err => {
       setError(err)
     })
+
+    console.log(user.token)
   }
 
   return (

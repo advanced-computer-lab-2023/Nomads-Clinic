@@ -2,14 +2,14 @@ const mongoose = require('mongoose')
 
 const Schema = mongoose.Schema
 
-const documentSchema = new Schema({
-    isPatient:  {
-        type: Boolean,
-        required: true
-    },
-    userId: {
+const healthRecordSchema = new Schema({
+    patientId: {
         type: String,
         required: true
+    },
+    doctorId: {
+        type: String,
+        required: false
     },
     document: {
         type: String,
@@ -17,4 +17,4 @@ const documentSchema = new Schema({
     }
 }, { timestamps: true });
 
-module.exports = mongoose.model('Document', documentSchema)
+module.exports = mongoose.model('HealthRecord', healthRecordSchema)
