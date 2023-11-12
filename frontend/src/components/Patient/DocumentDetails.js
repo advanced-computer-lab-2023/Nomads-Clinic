@@ -27,7 +27,7 @@ const DocumentDetails = ({ document }) => {
 
     const filePath = '/uploads/healthRecords/' + document.document;
     return (
-        <div className="doctor-details" >
+        <div className="doctor-details" ><center>
             {!isExpanded && (
                 <div>
                     <embed
@@ -49,7 +49,8 @@ const DocumentDetails = ({ document }) => {
                     />
                 </div>
             )}
-            <span onClick={handleDelete} className="material-symbols-outlined">delete</span>
+            </center>
+            <span onClick={handleDelete}>delete</span>
         </div>
     );
 };
