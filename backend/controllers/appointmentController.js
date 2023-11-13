@@ -71,19 +71,19 @@ const getAppointments = async (req, res) => {
     }
 };
 //get all  confirmed appointments
-const getConfirmedAppointments = async (req, res) => {
+const getUpcomingAppointments = async (req, res) => {
     try {
         let appointments;
         
         if (req.patient) {
             // If a patient is logged in, retrieve appointments for the patient
             const patientId = req.patient._id;
-            appointments = await Appointment.find({status:'Confirmed', patientId }).sort({ createdAt: -1 });
+            appointments = await Appointment.find({status:'Upcoming', patientId }).sort({ createdAt: -1 });
         } 
         else if (req.doctor) {
             // If a doctor is logged in, retrieve appointments for the doctor
             const doctorId = req.doctor._id;
-            appointments = await Appointment.find({ status:'Confirmed',doctorId }).sort({ createdAt: -1 });
+            appointments = await Appointment.find({ status:'Upcoming', doctorId }).sort({ createdAt: -1 });
         } 
 
         res.status(200).json(appointments);
@@ -204,7 +204,7 @@ module.exports= {
     deleteAppointment,
     updateAppointment,
     findIfAvailable,
-    getConfirmedAppointments,
+    getUpcomingAppointments,
     getCancelledAppointments,
     getAppointmentsByDate
 }

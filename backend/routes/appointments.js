@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { createAppointment, getAppointments, getAppointment, deleteAppointment, updateAppointment, findIfAvailable, getConfirmedAppointments, getCancelledAppointments,getAppointmentsByDate } = require('../controllers/appointmentController')
+const { createAppointment, getAppointments, getAppointment, deleteAppointment, updateAppointment, findIfAvailable, getUpcomingAppointments, getCancelledAppointments,getAppointmentsByDate } = require('../controllers/appointmentController')
 const requireAuthPatient = require('../middleware/requireAuthPatient')
 const requireAuthDoctor= require('../middleware/requireAuthDoctor')
 
@@ -16,7 +16,7 @@ router.post('/', createAppointment)
 router.get('/', getAppointments)
 
 //Get confirmed appointments
-router.get('/confirmed', getConfirmedAppointments)
+router.get('/upcoming', getUpcomingAppointments)
 
 //Get cancelled appointments
 router.get('/cancelled', getCancelledAppointments)

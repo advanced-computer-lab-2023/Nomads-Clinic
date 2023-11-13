@@ -28,6 +28,11 @@ const DoctorHome = () => {
           <button>Change Password</button>
         </Link>
       </div>
+      <div className="home-button">
+        <Link to="/doctor-add-availableTime">
+          <button>Add Availavble Time Slot</button>
+        </Link>
+      </div>
     </div>
 
   )

@@ -96,7 +96,7 @@ const DoctorViewInfo = () => {
               <p><strong>Last Name: </strong> {doctor.lastName}</p>
               <p><strong>Date of Birth: </strong>{new Date(doctor.dateOfBirth).toLocaleDateString()}</p>
               <p><strong>Specialty: </strong>{doctor.specialty}</p>
-          
+
               {isEditingUsername ? (
                     <div>
                         <input
@@ -158,6 +158,7 @@ const DoctorViewInfo = () => {
                         <button onClick={() => setIsEditingAffiliation(true)}>Edit Affiliation</button>
                     </div>
                 )}
+                
             </div>
           ) : (
             <p>Loading doctor information...</p>

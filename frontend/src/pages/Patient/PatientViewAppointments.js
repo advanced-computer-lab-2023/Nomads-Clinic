@@ -15,7 +15,7 @@ const PatientViewAppointments = () => {
             let apiUrl = '/api/appointments';
 
             if (filterConfirmed && !filterCancelled) {
-                apiUrl = '/api/appointments/confirmed';
+                apiUrl = '/api/appointments/upcoming';
             } else if (!filterConfirmed && filterCancelled) {
                 apiUrl = '/api/appointments/cancelled';
             } else if (filterByDate && selectedDate) {
@@ -88,7 +88,7 @@ const PatientViewAppointments = () => {
                             checked={filterConfirmed}
                             onChange={() => setFilterConfirmed(!filterConfirmed)}
                         />
-                        Confirmed
+                        Upcoming
                     </label>
                     <label className="checkbox-label">
                         <input

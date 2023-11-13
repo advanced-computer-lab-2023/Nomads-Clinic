@@ -20,6 +20,7 @@ import DoctorViewInfo from './pages/Doctor/DoctorViewInfo';
 import DoctorViewAppointments from './pages/Doctor/DoctorViewAppointments';
 import DoctorViewPatients from './pages/Doctor/DoctorViewPatients';
 import DoctorChangePassword from './pages/Doctor/DoctorChangePassword';
+import DoctorAddAvailableTime from './pages/Doctor/DoctorAddAvailableTime';
 
 import PatientHome from './pages/Patient/PatientHome';
 import PatientViewPrescriptions from './pages/Patient/PateintViewPrescriptions';
@@ -118,6 +119,10 @@ function App() {
             <Route
               path="/doctor-change-password"
               element={<DoctorChangePassword />}
+            />
+            <Route
+              path="/doctor-add-availableTime"
+              element={<DoctorAddAvailableTime/>}
             />
             <Route
               path="/patient-home"
