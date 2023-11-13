@@ -17,7 +17,7 @@ const DoctorViewAppointments = () => {
             let apiUrl = '/api/appointments';
 
             if (filterConfirmed && !filterCancelled) {
-                apiUrl = '/api/appointments/confirmed';
+                apiUrl = '/api/appointments/upcoming';
             } else if (!filterConfirmed && filterCancelled) {
                 apiUrl = '/api/appointments/cancelled';
             } else if (filterByDate && selectedDate) {

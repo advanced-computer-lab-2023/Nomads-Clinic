@@ -4,6 +4,7 @@ const express= require('express')
 const mongoose= require('mongoose')
 
 const healthPackageRoutes= require('./routes/healthPackages')
+const availableTimeRoutes = require('./routes/availableTimes')
 const familyMemberRoutes = require('./routes/familyMembers')
 const prescriptionRoutes= require('./routes/prescriptions')
 const appointmentRoutes= require('./routes/appointments')
@@ -27,6 +28,7 @@ const app= express()
 
 //routes
  app.use('/api/healthpackages',healthPackageRoutes) 
+ app.use('/api/availableTimes',availableTimeRoutes)
  app.use('/api/familymembers',familyMemberRoutes)
  app.use('/api/prescriptions',prescriptionRoutes)
  app.use('/api/appointments',appointmentRoutes)

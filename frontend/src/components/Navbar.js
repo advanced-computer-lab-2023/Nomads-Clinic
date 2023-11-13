@@ -24,14 +24,15 @@ const Navbar = () => {
                         </div>
                     )}
                     {!user && (
-                    <div>
-                        <Link to="/login">Login</Link>
-                        <Link to="/signup">Signup</Link>
-                    </div>
+                        <div>
+                            <Link to="/login">Login</Link>
+                            <Link to="/signup">Signup</Link>
+                        </div>
                     )}
                 </nav>
             </div>
         </header>
     )
 }
-export default Navbar
+
+export default Navbar;
