@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 
-const HealthPackageDetails = ({ healthPackage}) => {
+const HealthPackageDetails = ({ healthPackage, onSubscribe}) => {
 
     const [isExpanded, setIsExpanded] = useState(false);
 
     const toggleExpand = () => {
         setIsExpanded(!isExpanded);
+    };
+
+    const subscribe = () => {
+        // Call the onDelete function passed as a prop with the workout ID
+        onSubscribe(healthPackage._id);
     };
    
     return (
@@ -20,7 +25,7 @@ const HealthPackageDetails = ({ healthPackage}) => {
                     <p><strong>Medicine discount: </strong>{healthPackage.medicineDiscount}<strong>%</strong></p>
                     <p><strong>Family Member discount: </strong>{healthPackage.familyMemberDiscount}<strong>%</strong></p>
                     <div className='second'>
-                        <div>Subscirbe</div>
+                        <div onClick={subscribe}>Subscribe</div>
                     </div>
 
                 </div>

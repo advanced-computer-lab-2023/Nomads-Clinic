@@ -35,9 +35,9 @@ const uploadHealthRecord= async (req,res) => {
     else if (req.doctor) {
         // If a doctor is logged in
         const doctorId = req.doctor._id;
-        const patientId = req.body.patientId;
+        const { patientId }= req.query;
         const newHealthRecord= new HealthRecord({
-            patientId: patientId,
+            patientId,
             doctorId,
             document
         })
@@ -53,8 +53,8 @@ const uploadHealthRecord= async (req,res) => {
     }
 }
 
-//Get healthRecords of a patient
-const getPatientHealthRecords= async (req,res) => {
+//Get healthRecords 
+const getHealthRecords= async (req,res) => {
     if(req.patient){
         const patientId = req.patient._id
         try{
@@ -66,9 +66,11 @@ const getPatientHealthRecords= async (req,res) => {
         }
     }
     else if(req.doctor){
-        const patientId = req.body.patientId
+        const doctortId = req.doctor._id
+
+        const {patientId } = req.query
         try{
-            const healthRecords= await HealthRecord.find({patientId}).sort({createdAt: -1 })
+            const healthRecords= await HealthRecord.find({patientId, doctorId:doctortId}).sort({createdAt: -1 })
             res.status(200).json(healthRecords)
         }catch(error){
             console.log(error)
@@ -129,4 +131,4 @@ const deleteHealthRecord = async (req,res) => {
     
 }
 
-module.exports = {uploadHealthRecord, getPatientHealthRecords, getDoctorHealthRecords, deleteHealthRecord};
+module.exports = {uploadHealthRecord, getHealthRecords, getDoctorHealthRecords, deleteHealthRecord};

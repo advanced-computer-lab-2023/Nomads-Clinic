@@ -9,7 +9,7 @@ const PatientViewMedicalHistory = () => {
 
     useEffect(() => {
         const fetchMedicalHistory = async () => {
-            const response = await fetch('/api/healthrecords/patient', {
+            const response = await fetch('/api/healthrecords', {
                 headers: {
                     'Authorization': `Bearer ${user.token}`
 
@@ -35,7 +35,7 @@ const PatientViewMedicalHistory = () => {
                         key={document._id} document={document} />
                 ))}
                 <div className='add-new-admin-button'>
-                    <Link to="/MedicalHistory-form">
+                    <Link to="/HealthRecords-form">
                         <button>Add a medical history document</button>
                     </Link>
                 </div>

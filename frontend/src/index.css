@@ -191,11 +191,13 @@ padding: 20px;
   width: 600px;
 }
 .second{
+  margin-top: 7px;
   cursor: pointer;
   background: #f1f1f1;
   padding: 6px;
   color: #333;
 }
+
 .second2{
   padding: 6px;
   color: #333;

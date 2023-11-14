@@ -3,7 +3,7 @@ import {useLocation,Link} from 'react-router-dom'
 import AvailableTimeDetails from '../../components/Patient/AvailableTimeDetails';
 import {useAuthContext} from '../../hooks/useAuthContext'
 
-const PatientViewAvailableTimes = () => {
+const PatientBookAppointment= () => {
     const [availableTimes, setAvailableTimes] = useState(null);
     const location = useLocation();
     const doctor = location.state?.doctor;
@@ -85,15 +85,10 @@ const PatientViewAvailableTimes = () => {
                         key={availableTime._id} availableTime={availableTime} onBook={handleBook} />
                 ))}
                 {error && error.message}
-                <div className='add-new-admin-button'>
-                    <Link to="/familymember-form">
-                        <button>Add a Family Member</button>
-                    </Link>
-                </div>
             </div>
         </div>
     );
 };
 
 
-export default PatientViewAvailableTimes
+export default PatientBookAppointment

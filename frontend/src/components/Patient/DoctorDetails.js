@@ -9,7 +9,7 @@ const DoctorDetails = ({ doctor, onBook}) => {
         setIsExpanded(!isExpanded);
     };
     const handleBookClick = () => {
-        // Call the onDelete function passed as a prop with the workout ID
+     
         onBook(doctor._id);
     };
 

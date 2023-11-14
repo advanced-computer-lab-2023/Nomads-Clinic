@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import {  Link } from 'react-router-dom';
 import { useAuthContext } from '../../hooks/useAuthContext';
 
-const DoctoraddAppointment = () => {
+const DoctorAddAvailableTime = () => {
     const [selectedDate, setSelectedDate] = useState('');
     const [selectedTime, setSelectedTime] = useState('');
     const [error, setError] = useState('');
@@ -113,6 +113,12 @@ const DoctoraddAppointment = () => {
             checkSessionAvailability(year, month, day, e.target.value);
         }
     };
+
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+  
+    // Format the date as "YYYY-MM-DD"
+    const tomorrowFormatted = tomorrow.toISOString().split('T')[0];
     
 
     return (
@@ -124,7 +130,7 @@ const DoctoraddAppointment = () => {
                     type="date"
                     onChange={(e) => setSelectedDate(e.target.value)}
                     value={selectedDate}
-                    min="2024-01-01" // Set the minimum date to January 1, 2024
+                    min={tomorrowFormatted} 
                 />
             </div>
             <div>
@@ -159,4 +165,4 @@ const DoctoraddAppointment = () => {
     );
 };
 
-export default DoctoraddAppointment;
+export default DoctorAddAvailableTime

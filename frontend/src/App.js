@@ -21,6 +21,11 @@ import DoctorViewAppointments from './pages/Doctor/DoctorViewAppointments';
 import DoctorViewPatients from './pages/Doctor/DoctorViewPatients';
 import DoctorChangePassword from './pages/Doctor/DoctorChangePassword';
 import DoctorAddAvailableTime from './pages/Doctor/DoctorAddAvailableTime';
+import DoctorViewWallet from './pages/Doctor/DoctorViewWallet';
+import DoctorViewHealthRecords from './pages/Doctor/DoctorViewHealthRecords';
+import DoctorScheduleFollowUp from './pages/Doctor/DoctorScheduleFollowUp';
+
+
 
 import PatientHome from './pages/Patient/PatientHome';
 import PatientViewPrescriptions from './pages/Patient/PateintViewPrescriptions';
@@ -31,8 +36,10 @@ import PatientViewHealthPackages from './pages/Patient/PatientViewHealthPackages
 import FamilyMemberForm from './components/Patient/FamilyMemberForm';
 import PatientBookAppointment from './pages/Patient/PatientBookAppointment';
 import PatientChangePassword from './pages/Patient/PatientChangePassword';
-import PatientViewMedicalHistory from './pages/Patient/PatientViewMedicalHistory';
+import PatientViewHealthRecords from './pages/Patient/PatientViewHealthRecords';
 import MedicalHistoryForm from './components/Patient/MedicalHistoryForm';
+import PatientViewWallet from './pages/Patient/PatientViewWallet';
+import PatientSubscribedHealthPackage from './pages/Patient/PatientSubscribedHealthPackage';
 
 import Navbar from './components/Navbar';
 import Login from './pages/Login';
@@ -115,8 +122,16 @@ function App() {
               element={<DoctorViewAppointments />}
             />
             <Route
+              path="/doctor-view-healthRecords"
+              element={<DoctorViewHealthRecords />}
+            />
+            <Route
               path="/doctor-view-patients"
               element={<DoctorViewPatients />}
+            />
+            <Route
+              path="/doctor-view-wallet"
+              element={<DoctorViewWallet />}
             />
             <Route
               path="/doctor-change-password"
@@ -124,7 +139,11 @@ function App() {
             />
             <Route
               path="/doctor-add-availableTime"
-              element={<DoctorAddAvailableTime/>}
+              element={<DoctorAddAvailableTime />}
+            />
+            <Route
+              path="/doctor-schedule-followUp"
+              element={<DoctorScheduleFollowUp/>}
             />
             <Route
               path="/patient-home"
@@ -151,6 +170,18 @@ function App() {
               element={<PatientViewHealthPackages />}
             />
             <Route
+              path="/patient-view-wallet"
+              element={<PatientViewWallet />}
+            />
+            <Route
+              path="patient-subscribed-healthPackage"
+              element={<PatientSubscribedHealthPackage />}
+            />
+            <Route
+              path="/patient-view-wallet"
+              element={<PatientViewWallet />}
+            />
+            <Route
               path="/familymember-form"
               element={<FamilyMemberForm />}
             />
@@ -163,11 +194,11 @@ function App() {
               element={<PatientChangePassword />}
             />
             <Route
-              path="/patient-view-medicalhistory"
-              element={<PatientViewMedicalHistory />}
+              path="/patient-view-healthRecords"
+              element={<PatientViewHealthRecords />}
             />
             <Route
-              path="/MedicalHistory-form"
+              path="/HealthRecords-form"
               element={<MedicalHistoryForm />}
             />
           </Routes>
