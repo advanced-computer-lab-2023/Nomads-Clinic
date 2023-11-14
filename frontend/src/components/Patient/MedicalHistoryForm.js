@@ -2,12 +2,14 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom';
 import { useAuthContext } from '../../hooks/useAuthContext';
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
 
 const MedicalHistoryForm = () => {
   const { user } = useAuthContext()
   const [error, setError] = useState(null)
   const [file, setFile] = useState(null)
   const [emptyFields, setEmptyFields] = useState([])
+  const navigate = useNavigate();
 
   const upload = () => {
     setError(null);
@@ -33,12 +35,11 @@ const MedicalHistoryForm = () => {
         'Authorization': `Bearer ${user.token}`
       }
     }).then(res => {
+      navigate('/patient-view-medicalhistory');
       console.log(res)
     }).catch(err => {
-      setError(err)
+      setError(err.message)
     })
-
-    console.log(user.token)
   }
 
   return (
@@ -53,7 +54,7 @@ const MedicalHistoryForm = () => {
       />
 
       <button type='button' onClick={upload}>Add Document</button>
-      {error && <div className="error">{error.message}</div>}
+      {error && <div className="error">{error}</div>}
       <div className='back-button'>
         <Link to="/patient-view-medicalhistory">
           <button className='normal-button'>Back To Medical History</button>
