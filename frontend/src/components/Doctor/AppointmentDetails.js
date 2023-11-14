@@ -15,7 +15,7 @@ const AppointmentDetails = ({ appointment,onHealthRecord,onPrescription,onFollow
     };
     const handlePrescription= () => {
      
-        onPrescription(appointment._id);
+        onPrescription(appointment);
     };
     const handleFollowUp= () => {
     

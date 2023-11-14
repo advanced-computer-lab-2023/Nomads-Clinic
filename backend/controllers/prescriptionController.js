@@ -6,7 +6,7 @@ const mongoose= require('mongoose')
 
 //Create a new Prescription
 const createPrescription= async (req,res) => {
-    const {year,month,day,name,status,patientId}= req.body
+    const {year,month,day,medicineName,status,patientId}= req.body
 
     let emptyFields = []
 
@@ -19,7 +19,7 @@ const createPrescription= async (req,res) => {
     if(!day){
         emptyFields.push('day')
     }
-    if(!name){
+    if(!medicineName){
         emptyFields.push('name')
     }
     if(!status){
@@ -35,7 +35,7 @@ const createPrescription= async (req,res) => {
     //add doc to db
     try{
         const doctorId= req.doctor._id
-        const prescription= await Prescription.create({year,month,day,name,status,patientId,doctorId})
+        const prescription= await Prescription.create({year,month,day,medicineName,status,patientId,doctorId})
         res.status(200).json(prescription)
     }catch(error){
         res.status(400).json({error: error.message})
@@ -56,11 +56,13 @@ const getPrescriptions = async (req, res) => {
             prescriptions = await Prescription.find({ patientId }).sort({ createdAt: -1 });
         } 
         else if (req.doctor) {
+
+            const { patientId} = req.query;
       
             // If a doctor is logged in, retrieve prescriptions for the doctor
           
             const doctorId = req.doctor._id;
-            prescriptions = await Prescription.find({ doctorId }).sort({ createdAt: -1 });
+            prescriptions = await Prescription.find({ doctorId ,patientId}).sort({ createdAt: -1 });
         } 
 
        

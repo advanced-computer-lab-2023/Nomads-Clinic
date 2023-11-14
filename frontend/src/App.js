@@ -24,6 +24,8 @@ import DoctorAddAvailableTime from './pages/Doctor/DoctorAddAvailableTime';
 import DoctorViewWallet from './pages/Doctor/DoctorViewWallet';
 import DoctorViewHealthRecords from './pages/Doctor/DoctorViewHealthRecords';
 import DoctorScheduleFollowUp from './pages/Doctor/DoctorScheduleFollowUp';
+import DoctorViewPrescriptions from './pages/Doctor/DoctorViewPrescriptions';
+import PrescriptionForm from './components/Doctor/PrescriptionForm';
 
 
 
@@ -40,6 +42,7 @@ import PatientViewHealthRecords from './pages/Patient/PatientViewHealthRecords';
 import MedicalHistoryForm from './components/Patient/MedicalHistoryForm';
 import PatientViewWallet from './pages/Patient/PatientViewWallet';
 import PatientSubscribedHealthPackage from './pages/Patient/PatientSubscribedHealthPackage';
+
 
 import Navbar from './components/Navbar';
 import Login from './pages/Login';
@@ -141,6 +144,10 @@ function App() {
               element={<DoctorViewHealthRecords />}
             />
             <Route
+              path="/doctor-view-prescriptions"
+              element={<DoctorViewPrescriptions />}
+            />
+            <Route
               path="/doctor-view-patients"
               element={<DoctorViewPatients />}
             />
@@ -159,6 +166,10 @@ function App() {
             <Route
               path="/doctor-schedule-followUp"
               element={<DoctorScheduleFollowUp/>}
+            />
+            <Route
+              path="/prescription-form"
+              element={<PrescriptionForm/>}
             />
             <Route
               path="/patient-home"
