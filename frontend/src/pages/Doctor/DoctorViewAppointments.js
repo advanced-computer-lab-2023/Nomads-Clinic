@@ -3,9 +3,6 @@ import AppointmentDetails from '../../components/Doctor/AppointmentDetails';
 import { useAuthContext } from '../../hooks/useAuthContext';
 import { useNavigate } from 'react-router-dom'
 
-
-
-
 const DoctorViewAppointments = () => {
   const navigate = useNavigate();
   const [appointments, setAppointments] = useState(null);
@@ -84,15 +81,15 @@ const DoctorViewAppointments = () => {
   const viewHealthRecords = (appointment) => {
     if (appointment) {
       const { patientId } = appointment; 
-      console.log("patientId", patientId); 
       navigate('/doctor-view-healthRecords', { state: { appointment: { patientId } } });
     }
   };
+  const viewPrescriptions = (appointment) => {
+    navigate('/doctor-view-prescriptions', { state: { appointment } });
+  };
   const scheduleFollowUp = (appointment) => {
-    console.log("appointment", appointment); // Log the entire appointment object
     if (appointment) {
       const { patientId } = appointment; // Extract only necessary properties
-      console.log("patientId", patientId); // Log the extracted patientId
       navigate('/doctor-schedule-followUp', { state: { appointment: { patientId } } });
     }
   };
@@ -108,6 +105,7 @@ const DoctorViewAppointments = () => {
             appointment={appointment}
             onHealthRecord={viewHealthRecords}
             onFollowUP={scheduleFollowUp}
+            onPrescription={viewPrescriptions}
           />
         ))}
       </div>

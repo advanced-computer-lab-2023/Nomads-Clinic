@@ -15,7 +15,7 @@ const prescriptionSchema = new Schema({
         type: Number,
         required: true
     },
-    name:{
+    medicineName:{
         type: String,
         required: true
     },

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {useLocation,Link} from 'react-router-dom'
+import {useLocation} from 'react-router-dom'
 import AvailableTimeDetails from '../../components/Patient/AvailableTimeDetails';
 import {useAuthContext} from '../../hooks/useAuthContext'
 

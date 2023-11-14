@@ -8,9 +8,10 @@ const PrescriptionDetails = ({ prescription}) => {
     const toggleExpand = () => {
         setIsExpanded(!isExpanded);
     };
+    
 
     return (
-        <div className="prescription-details" onClick={toggleExpand}>
+        <div className="doctor-details" onClick={toggleExpand}>
          <h4>
                 Prescriptiont Date: {prescription.day}/{prescription.month}/{prescription.year}
             </h4>
