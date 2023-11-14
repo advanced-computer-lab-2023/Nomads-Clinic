@@ -61,7 +61,7 @@ export const useOTP = () => {
       }
     } catch (error) {
       console.error('Error during OTP check:', error.message);
-      // Handle other errors, such as network issues or server errors
+     
     }
   }
 
@@ -74,24 +74,19 @@ export const useOTP = () => {
       });
   
       if (!response.ok) {
-        // Handle non-OK responses, for example:
         const errorData = await response.json();
         throw new Error(errorData.message || 'Something went wrong');
       }
   
       
       if (response.ok) {
-        // Assuming setMessage is part of your state management
         setMessage('Password reset successful');
         navigate('/login');
       } else {
-        // Assuming setMessage is part of your state management
         setMessage('Password reset failed');
       }
     } catch (error) {
-      // Handle fetch or JSON parsing errors
       console.error('Error resetting password:', error);
-      // Assuming setMessage is part of your state management
       setMessage('Something went wrong, please try again!');
     }
   };
