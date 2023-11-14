@@ -39,6 +39,10 @@ const patientSchema = new Schema({
         type: Number,
         required: true
     },
+    wallet:{
+        type: Number,
+        default: 0
+    },
     emergencyContact: {
         firstName: {
             type: String,
@@ -52,6 +56,10 @@ const patientSchema = new Schema({
             type: Number,
             required: true
         }
+    },
+    healthPackage: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'HealthPackage'
     }
 }, { timestamps: true });
 

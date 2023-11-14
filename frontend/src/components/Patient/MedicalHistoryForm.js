@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom';
 import { useAuthContext } from '../../hooks/useAuthContext';
+import { useLocation } from 'react-router-dom';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 
@@ -10,6 +11,11 @@ const MedicalHistoryForm = () => {
   const [file, setFile] = useState(null)
   const [emptyFields, setEmptyFields] = useState([])
   const navigate = useNavigate();
+
+  const location = useLocation();
+  const { appointment } = location.state;
+
+  const { patientId } = appointment;
 
   const upload = () => {
     setError(null);
@@ -29,7 +35,7 @@ const MedicalHistoryForm = () => {
     
     const formData = new FormData()
     formData.append('document', file)
-    axios.post('/api/healthRecords', formData, {
+    axios.post(`/api/healthRecords?patientId=${patientId}`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
         'Authorization': `Bearer ${user.token}`
@@ -56,7 +62,7 @@ const MedicalHistoryForm = () => {
       <button type='button' onClick={upload}>Add Document</button>
       {error && <div className="error">{error}</div>}
       <div className='back-button'>
-        <Link to="/patient-view-medicalhistory">
+        <Link to="/patient-view-healthRecords">
           <button className='normal-button'>Back To Medical History</button>
         </Link>
       </div>

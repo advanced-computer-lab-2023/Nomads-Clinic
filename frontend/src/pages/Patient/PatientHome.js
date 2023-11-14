@@ -36,8 +36,18 @@ const PatientHome = () => {
         </Link>
       </div>
       <div className="home-button">
-        <Link to="/patient-view-medicalhistory">
+        <Link to="/patient-view-healthRecords">
           <button>Medical History</button>
+        </Link>
+      </div>
+      <div className="home-button">
+        <Link to="/patient-view-wallet">
+          <button>View Wallet </button>
+        </Link>
+      </div>
+      <div className="home-button">
+        <Link to="/patient-subscribed-healthPackage">
+          <button>View Subscribed Health Package </button>
         </Link>
       </div>
     </div>
