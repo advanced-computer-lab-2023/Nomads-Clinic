@@ -44,6 +44,9 @@ import PatientSubscribedHealthPackage from './pages/Patient/PatientSubscribedHea
 import Navbar from './components/Navbar';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import ForgotPassword from './pages/ForgotPassword';
+import EnterOTP from './pages/EnterOTP';
+import PasswordReset from './pages/PasswordReset';
 
 
 function App() {
@@ -69,6 +72,18 @@ function App() {
               path="/signup"
               element={<Signup />}
             />
+            <Route
+              path="/forgot-password"
+              element={<ForgotPassword/>}
+             />
+            <Route
+              path="/enter-otp"
+              element={<EnterOTP/>}
+              />
+            <Route
+               path="/password-reset"
+               element={<PasswordReset/>}
+               />
             <Route
               path="/admin-home"
               element={<AdminHome />}
