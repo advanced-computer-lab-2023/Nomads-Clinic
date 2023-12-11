@@ -1,32 +1,20 @@
 import { useState } from 'react'
-import { useLogin } from '../hooks/useLogin'
+import {useLogin} from '../../hooks/Doctor/useLogin'
 
 
-const Login = () => {
+const DoctorLogin = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [loginAsA, setLoginAsA] = useState('')
     const { login, error, isLoading } = useLogin()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        await login(loginAsA,email, password)
+        await login(email, password)
     }
     return (
         <form className="login" onSubmit={handleSubmit}>
-            <h2>Log in</h2>
-            <label>Log in as a:</label>
-            <div className='select'>
-                <select
-                    onChange={(e) => setLoginAsA(e.target.value)}
-                    value={loginAsA}>
-                    <option>------------------Select an option-----------------------</option>
-                    <option >Patient</option>
-                    <option >Doctor</option>
-                    <option >Admin</option>
-                </select>
-            </div>
+            <h2> Doctor log in</h2>
             <label>Email:</label>
             <input
                 type="email"
@@ -46,4 +34,4 @@ const Login = () => {
     )
 
 }
-export default Login
+export default DoctorLogin

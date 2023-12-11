@@ -1,10 +1,12 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { useAuthContext } from './hooks/useAuthContext';
 
 
 import GuestHome from './pages/Guest/GuestHome'
-import GuestViewDoctors from './pages/Guest/GuestViewDoctors';
 
 import AdminHome from './pages/Admin/AdminHome'
+import ClinicAdminHome from './pages/Admin/ClinicAdminHome';
+import PharmacyAdminHome from './pages/Admin/PharmacyAdminHome';
 import AdminViewDoctors from './pages/Admin/AdminViewDoctors';
 import AdminViewApprovalDoctors from './pages/Admin/AdminViewApprovalDoctors'
 import AdminViewAdmins from './pages/Admin/AdminViewAdmins';
@@ -13,6 +15,11 @@ import AdminViewPatients from './pages/Admin/AdminViewPatients';
 import AdminViewHealthPackages from './pages/Admin/AdminViewHealthPackages';
 import AdminChangePassword from './pages/Admin/AdminChangePassword';
 import HealthPackageForm from './components/Admin/HealthPackageForm';
+import AdminViewPharmacists from './pages/Admin/AdminViewPharmacists';
+import AdminViewApprovalPharmacists from './pages/Admin/AdminViewApprovalPharmacists'
+import AdminViewMedicine from './pages/Admin/AdminViewMedicine';
+import AdminLogin from './pages/Admin/AdminLogin';
+
 
 import DoctorHome from './pages/Doctor/DoctorHome';
 import NonApprovedDoctor from './pages/Doctor/NonApprovedDoctor';
@@ -26,10 +33,22 @@ import DoctorViewHealthRecords from './pages/Doctor/DoctorViewHealthRecords';
 import DoctorScheduleFollowUp from './pages/Doctor/DoctorScheduleFollowUp';
 import DoctorViewPrescriptions from './pages/Doctor/DoctorViewPrescriptions';
 import PrescriptionForm from './components/Doctor/PrescriptionForm';
+import DoctorLogin from './pages/Doctor/DoctorLogin';
+import DoctorSignup from './pages/Doctor/DoctorSignup';
+import DoctorHealthRecordForm from './components/Doctor/DoctorHealthRecordForm';
 
+import PharmacistHome from './pages/Pharmacist/PharmacistHome';
+import NonApprovedPharmacist from './pages/Pharmacist/NonApprovedPharmacist';
+import PharmacistViewMedicine from './pages/Pharmacist/PharmacistViewMedicine';
+import MedicineForm from './components/Pharmacist/MedicineForm';
+import PharmacistChangePassword from './pages/Pharmacist/PharmacistChangePassword';
+import PharmacistLogin from './pages/Pharmacist/PharmacistLogin';
+import PharmacistSignup from './pages/Pharmacist/PharmacistSignup';
 
 
 import PatientHome from './pages/Patient/PatientHome';
+import ClinicPatientHome from './pages/Patient/ClinicPatientHome';
+import PharmacyPatientHome from './pages/Patient/PharmacyPatientHome';
 import PatientViewPrescriptions from './pages/Patient/PateintViewPrescriptions';
 import PatientViewAppointments from './pages/Patient/PatientViewAppointments';
 import PatientViewDoctors from './pages/Patient/PatientViewDoctors';
@@ -39,17 +58,26 @@ import FamilyMemberForm from './components/Patient/FamilyMemberForm';
 import PatientBookAppointment from './pages/Patient/PatientBookAppointment';
 import PatientChangePassword from './pages/Patient/PatientChangePassword';
 import PatientViewHealthRecords from './pages/Patient/PatientViewHealthRecords';
-import MedicalHistoryForm from './components/Patient/MedicalHistoryForm';
+import PatientHealthRecordForm from './components/Patient/PatientHealthRecordForm';
 import PatientViewWallet from './pages/Patient/PatientViewWallet';
 import PatientSubscribedHealthPackage from './pages/Patient/PatientSubscribedHealthPackage';
+import PatientLogin from './pages/Patient/PatientLogin';
+import PatientSignup from './pages/Patient/PatientSignup';
+import PatientViewMedicine from './pages/Patient/PatientViewMedicine';
+import PatientCheckout from './pages/Patient/PatientCheckout';
+import PatientViewOrders from './pages/Patient/PatientViewOrders';
+
 
 
 import Navbar from './components/Navbar';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
+
+
 
 
 function App() {
+
+  const {user} = useAuthContext()
+  
   return (
     <div className="App">
       <BrowserRouter>
@@ -58,27 +86,66 @@ function App() {
           <Routes>
             <Route
               path="/"
-              element={<GuestHome />}
+              element={ !user ?  <GuestHome /> : 
+              user.type==="patient" ? <Navigate to="patient-home"/> :
+              user.type==="doctor" ?  <Navigate to="doctor-home"/> : 
+              user.type==="pharmacist" ?  <Navigate to="pharmacist-home"/> :  <Navigate to="admin-home"/> }
             />
             <Route
-              path="/guest-view-doctors"
-              element={<GuestViewDoctors />}
+              path="/patient-login"
+              element={<PatientLogin />}
             />
             <Route
-              path="/login"
-              element={<Login />}
+              path="/doctor-login"
+              element={<DoctorLogin />}
             />
             <Route
-              path="/signup"
-              element={<Signup />}
+              path="/admin-login"
+              element={<AdminLogin />}
+            />
+            <Route
+              path="/pharmacist-login"
+              element={<PharmacistLogin />}
+            />
+            <Route
+              path="/patient-signup"
+              element={<PatientSignup />}
+            />
+            <Route
+              path="/doctor-signup"
+              element={<DoctorSignup />}
+            />
+            <Route
+              path="/pharmacist-signup"
+              element={<PharmacistSignup />}
+            />
+            <Route
+              path="/patient-signup"
+              element={<PatientSignup />}
             />
             <Route
               path="/admin-home"
               element={<AdminHome />}
             />
             <Route
+              path="/clinic-admin-home"
+              element={<ClinicAdminHome />}
+            />
+            <Route
+              path="/pharmacy-admin-home"
+              element={<PharmacyAdminHome />}
+            />
+            <Route
               path="/admin-view-doctors"
               element={<AdminViewDoctors />}
+            />
+            <Route
+              path="/admin-view-pharmacists"
+              element={<AdminViewPharmacists />}
+            />
+            <Route
+              path="/admin-view-medicine"
+              element={<AdminViewMedicine />}
             />
             <Route
               path="/admin-view-admins"
@@ -107,6 +174,10 @@ function App() {
             <Route
               path="/admin-view-approval-doctors"
               element={<AdminViewApprovalDoctors />}
+            />
+            <Route
+              path="/admin-view-approval-pharmacists"
+              element={<AdminViewApprovalPharmacists />}
             />
             <Route
               path="/doctor-home"
@@ -153,12 +224,48 @@ function App() {
               element={<DoctorScheduleFollowUp/>}
             />
             <Route
+              path="/doctor-healthrecord-form"
+              element={<DoctorHealthRecordForm/>}
+            />
+            <Route
               path="/prescription-form"
               element={<PrescriptionForm/>}
             />
             <Route
+              path="/pharmacist-home"
+              element={<PharmacistHome/>}
+            />
+            <Route
+              path="/pharmacist-home"
+              element={<PharmacistHome/>}
+            />
+            <Route
+              path="/not-approved-pharmacist"
+              element={<NonApprovedPharmacist/>}
+            />
+            <Route
+              path="/pharmacist-view-medicine"
+              element={<PharmacistViewMedicine/>}
+            />
+            <Route
+              path="/medicine-form"
+              element={<MedicineForm/>}
+            />
+            <Route
+              path="/pharmacist-change-password"
+              element={<PharmacistChangePassword/>}
+            />
+            <Route
               path="/patient-home"
               element={<PatientHome />}
+            />
+            <Route
+              path="/clinic-patient-home"
+              element={<ClinicPatientHome />}
+            />
+            <Route
+              path="/pharmacy-patient-home"
+              element={<PharmacyPatientHome />}
             />
             <Route
               path="/patient-view-prescriptions"
@@ -193,6 +300,10 @@ function App() {
               element={<PatientViewWallet />}
             />
             <Route
+              path="/patient-healthrecord-form"
+              element={<PatientHealthRecordForm />}
+            />
+            <Route
               path="/familymember-form"
               element={<FamilyMemberForm />}
             />
@@ -208,9 +319,18 @@ function App() {
               path="/patient-view-healthRecords"
               element={<PatientViewHealthRecords />}
             />
+  
             <Route
-              path="/HealthRecords-form"
-              element={<MedicalHistoryForm />}
+              path="/patient-view-medicine"
+              element={<PatientViewMedicine/>}
+            />
+            <Route
+              path="/patient-checkout"
+              element={<PatientCheckout/>}
+            />
+            <Route
+              path="/patient-view-orders"
+              element={<PatientViewOrders/>}
             />
           </Routes>
         </div>

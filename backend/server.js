@@ -3,6 +3,8 @@ require('dotenv').config()
 const express= require('express')
 const mongoose= require('mongoose')
 
+const pharmacistRoutes= require('./routes/pharmacists')
+const medicineRoutes= require('./routes/medicine')
 const healthPackageRoutes= require('./routes/healthPackages')
 const availableTimeRoutes = require('./routes/availableTimes')
 const familyMemberRoutes = require('./routes/familyMembers')
@@ -27,6 +29,9 @@ const app= express()
  })
 
 //routes
+
+app.use('/api/pharmacists',pharmacistRoutes)
+app.use('/api/medicine',medicineRoutes)
  app.use('/api/healthpackages',healthPackageRoutes) 
  app.use('/api/availableTimes',availableTimeRoutes)
  app.use('/api/familymembers',familyMemberRoutes)

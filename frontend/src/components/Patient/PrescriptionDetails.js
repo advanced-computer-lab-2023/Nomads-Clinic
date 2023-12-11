@@ -10,7 +10,7 @@ const PrescriptionDetails = ({ prescription}) => {
     };
 
     return (
-        <div className="prescription-details" onClick={toggleExpand}>
+        <div className="doctor-details" onClick={toggleExpand}>
          <h4>
                 Prescriptiont Date: {prescription.day}/{prescription.month}/{prescription.year}
             </h4>

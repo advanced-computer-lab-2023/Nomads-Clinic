@@ -181,10 +181,19 @@ select{
 
   }
 .home-button{
-padding: 20px;
-
-
+padding: 50px;
 }
+
+.home1-button{
+  width: 200px;
+padding: 20px;
+}
+.welcome{
+  font-size: x-large;
+  padding-left: 400px;
+}
+
+
 .major-button{
   font-size: xx-large;
  border-color: #e7195a;
@@ -229,3 +238,74 @@ padding-right: 50px;
  .date-date{
   padding-right: 30px;
  }
+/* ClinicHome.css */
+
+/* ClinicHome.css */
+
+.clinic-home-container {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.select-role {
+  margin: 10px 0;
+  color: #555;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0; /* Adjusted margin */
+}
+
+.role-button {
+  margin: 0 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+}
+
+.role-button:hover {
+  background-color: #2a80b9;
+}
+
+.role-button:active {
+  background-color: #236592;
+}
+
+.or-text {
+  margin: 10px 0;
+  color: #555;
+}
+
+.register-button {
+  margin-top: 10px;
+  background-color: #27ae60;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+}
+
+.register-button:hover {
+  background-color: #218c52;
+}
+
+.register-button:active {
+  background-color: #1c6d3e;
+}

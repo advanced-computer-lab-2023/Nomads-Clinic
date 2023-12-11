@@ -1,53 +1,21 @@
+
 import { Link } from "react-router-dom";
 
 const PatientHome = () => {
 
+
   return (
 
+    
     <div className="admin-home" style={{ display: 'flex' }}>
       <div className="home-button">
-        <Link to="/patient-view-doctors">
-          <button>View All Doctors</button>
+        <Link to="/clinic-patient-home">
+          <button className="home1-button">Clinic </button>
         </Link>
       </div>
       <div className="home-button">
-        <Link to="/patient-view-appointments">
-          <button>My Appointments</button>
-        </Link>
-      </div>
-      <div className="home-button">
-        <Link to="/patient-view-prescriptions">
-          <button>My Prescriptions</button>
-        </Link>
-      </div>
-      <div className="home-button">
-        <Link to="/patient-view-familymembers">
-          <button>View Registered Family Members</button>
-        </Link>
-      </div>
-      <div className="home-button">
-        <Link to="/patient-view-healthpackages">
-          <button>View Health Packages</button>
-        </Link>
-      </div>
-      <div className="home-button">
-        <Link to="/patient-change-password">
-          <button>Change Password</button>
-        </Link>
-      </div>
-      <div className="home-button">
-        <Link to="/patient-view-healthRecords">
-          <button>Medical History</button>
-        </Link>
-      </div>
-      <div className="home-button">
-        <Link to="/patient-view-wallet">
-          <button>View Wallet </button>
-        </Link>
-      </div>
-      <div className="home-button">
-        <Link to="/patient-subscribed-healthPackage">
-          <button>View Subscribed Health Package </button>
+        <Link to="/pharmacy-patient-home">
+          <button className="home1-button"> Pharmacy</button>
         </Link>
       </div>
     </div>

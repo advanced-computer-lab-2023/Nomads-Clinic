@@ -151,7 +151,9 @@ const loginAdmin = async (req,res) => {
         const token = createToken(admin._id)
         const id= admin._id
 
-        res.status(200).json({id,email,token})
+        const type = "admin"
+
+        res.status(200).json({type,id,email,token})
     }
     catch(error){
         res.status(400).json({error: error.message})
@@ -171,7 +173,9 @@ const signupAdmin = async (req,res) => {
 
         const id= admin._id
 
-        res.status(200).json({id,email,token})
+        const type = "admin"
+
+        res.status(200).json({type,id,email,token})
     }
     catch(error){
         res.status(400).json({error: error.message})

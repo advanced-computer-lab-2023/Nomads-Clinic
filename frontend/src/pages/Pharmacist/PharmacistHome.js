@@ -1,25 +1,22 @@
-
 import { Link } from "react-router-dom";
 
-const AdminHome = () => {
-
+const PharmacistHome = () => {
 
   return (
 
-    
     <div className="admin-home" style={{ display: 'flex' }}>
       <div className="home-button">
-        <Link to="/clinic-admin-home">
-          <button className="home1-button">Clinic </button>
+        <Link to="/pharmacist-view-medicine">
+          <button>View All Medicine</button>
         </Link>
       </div>
       <div className="home-button">
-        <Link to="/pharmacy-admin-home">
-          <button className="home1-button"> Pharmacy</button>
+        <Link to="/pharmacist-change-password">
+          <button>Change Password</button>
         </Link>
       </div>
     </div>
 
   )
 }
-export default AdminHome;
+export default PharmacistHome;
