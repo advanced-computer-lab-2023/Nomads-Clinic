@@ -69,6 +69,8 @@ import PatientViewOrders from './pages/Patient/PatientViewOrders';
 
 
 
+
+
 import Navbar from './components/Navbar';
 
 
@@ -121,18 +123,6 @@ function App() {
               path="/patient-signup"
               element={<PatientSignup />}
             />
-            <Route
-              path="/forgot-password"
-              element={<ForgotPassword/>}
-             />
-            <Route
-              path="/enter-otp"
-              element={<EnterOTP/>}
-              />
-            <Route
-               path="/password-reset"
-               element={<PasswordReset/>}
-               />
             <Route
               path="/admin-home"
               element={<AdminHome />}
