@@ -35,7 +35,7 @@ const PatientViewMedicalHistory = () => {
                         key={document._id} document={document} />
                 ))}
                 <div className='add-new-admin-button'>
-                    <Link to="/HealthRecords-form">
+                    <Link to="/patient-healthrecord-form">
                         <button>Add a medical history document</button>
                     </Link>
                 </div>
