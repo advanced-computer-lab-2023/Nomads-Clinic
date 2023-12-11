@@ -30,6 +30,7 @@ const AdminLogin = () => {
 
             <button className='signup-login-button' disabled={isLoading}>Log in</button>
             {error && <div className='error'>{error}</div>}
+                 <Link to="/forgot-password">Forgot Password?</Link>
         </form>
     )
 

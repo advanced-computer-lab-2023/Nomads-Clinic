@@ -15,6 +15,7 @@ const patientRoutes= require('./routes/patients')
 const doctorRoutes= require('./routes/doctors')
 const adminRoutes = require('./routes/admins')
 const healthRecordsRoutes = require('./routes/healthRecords')
+const otpRoutes = require('./routes/otp')
 
 global.__basedir = __dirname;
 
@@ -43,7 +44,7 @@ app.use('/api/medicine',medicineRoutes)
  app.use('/api/admins',adminRoutes)
  app.use('/api/healthrecords',healthRecordsRoutes)
  app.use('/uploads', express.static('uploads'));
-
+ app.use('/api/otp',otpRoutes)
 
 
 //Connect to db
