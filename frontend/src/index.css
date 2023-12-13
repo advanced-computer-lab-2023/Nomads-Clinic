@@ -309,3 +309,38 @@ padding-right: 50px;
 .register-button:active {
   background-color: #1c6d3e;
 }
+/* PharmacyPatientHome.css */
+.cart-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* semi-transparent black background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cart-modal {
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+.quantity-buttons {
+  display: flex;
+  gap: 8px; /* Adjust as needed */
+  padding: 4px 8px;
+}
+.remove-from-cart-button{
+  
+    color: white;
+    background-color: red;
+    
+  
+}
+.cart-quantity{
+  color:#27ae60;
+}
+

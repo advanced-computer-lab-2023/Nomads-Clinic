@@ -107,6 +107,10 @@ const PatientViewMedicine = () => {
             console.error('Failed to update quantity in the cart.');
           }
         } else {
+          console.log(medicineId);
+          console.log(quantity);
+          console.log(price);
+
           // If the medicine is not in the cart, add it as a new item
           const response = await axios.post(
             `/api/patients/${user.id}/cart/medicine`,

@@ -325,11 +325,11 @@ function App() {
               element={<PatientViewMedicine/>}
             />
             <Route
-              path="/patient-checkout"
+              path="/checkout"
               element={<PatientCheckout/>}
             />
             <Route
-              path="/patient-view-orders"
+              path="/orders"
               element={<PatientViewOrders/>}
             />
           </Routes>
