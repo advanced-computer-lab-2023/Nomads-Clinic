@@ -5,6 +5,7 @@ require('dotenv').config()
  const jwt= require('jsonwebtoken')
  const bcrypt = require('bcrypt')
  const validator= require('validator')
+ const Document = require('../models/documentModel')
 
 
 
@@ -152,6 +153,33 @@ const signupDoctor= async (req,res) => {
 
 }
 
+//Upload required document
+const uploadDocument= async (req,res) => {
+
+    if(!req.file){
+        return res.status(400).json({error: 'No file was uploaded'})
+    }
+
+    const document = req.file.filename
+
+    if (req.doctor) {
+        // If a doctor is logged in
+        const doctorId = req.doctor._id;
+        const newDocument= new Document({
+            doctorId,
+            document
+        })
+
+        try{
+            await newDocument.save()
+            res.status(201).json(newDocument)
+        }catch(error){
+            console.log(error)
+            res.status(500).json({error: error.message})
+        }
+    }
+}
+
 module.exports= {
     getApprovalDoctors,
     getDoctors,
@@ -160,5 +188,6 @@ module.exports= {
     updateDoctor,
     updateDoctorPassword,
     signupDoctor,
-    loginDoctor
+    loginDoctor,
+    uploadDocument
 }

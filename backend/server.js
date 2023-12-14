@@ -43,7 +43,7 @@ app.use('/api/medicine',medicineRoutes)
  app.use('/api/doctors',doctorRoutes)
  app.use('/api/admins',adminRoutes)
  app.use('/api/healthrecords',healthRecordsRoutes)
- app.use('/uploads', express.static('uploads'));
+ //app.use('/uploads', express.static('uploads'));
  //app.use('/api/otp',otpRoutes)
 
 

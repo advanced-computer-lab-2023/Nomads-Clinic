@@ -1,7 +1,7 @@
 const express= require('express')
 const router= express.Router()
 const {uploadHealthRecord, getHealthRecords, getDoctorHealthRecords, deleteHealthRecord} = require('../controllers/healthRecordController')
-const upload = require('../middleware/upload')
+const upload = require('../middleware/uploadHealthRecord')
 const requireAuthPatient = require('../middleware/requireAuthPatient')
 const requireAuthDoctor = require('../middleware/requireAuthDoctor')
 
