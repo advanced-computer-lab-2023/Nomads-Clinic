@@ -7,6 +7,7 @@ require('dotenv').config()
  const validator= require('validator')
  const Address = require('../models/addressModel');
  const Order = require('../models/OrderModel');
+ const Medicine = require('../models/medicineModel');
 
  
 
@@ -280,37 +281,68 @@ const getAllAddresses = async (req, res) => {
 };
 
 const createOrder = async (req, res) => {
-    try {
+  try {
       const { patientId, items, totalPrice, address, paymentMethod } = req.body;
-  
+
       // Validate that required fields are present
       if (!patientId || !items || !totalPrice || !address || !paymentMethod) {
-        return res.status(400).json({ error: 'Missing required fields in the request.' });
+          return res.status(400).json({ error: 'Missing required fields in the request.' });
       }
-  
+
       // Create the order
       const order = new Order({
-        patientId,
-        items,
-        totalPrice,
-        address,
-        paymentMethod,
+          patientId,
+          items,
+          totalPrice,
+          address,
+          paymentMethod,
       });
-  
+
       // Save the order
       await order.save();
-  
+
+      // Update medicine quantities and sales
+      for (const item of items) {
+          const { medicine, quantity } = item;
+
+          // Find the medicine and update its quantity and sales
+          const medicineModel = await Medicine.findById(medicine);
+
+          if (!medicineModel) {
+              console.error('Medicine not found:', medicine);
+              continue; // Skip to the next iteration if the medicine is not found
+          }
+
+          // Decrease the quantity
+          if (medicineModel.quantity >= quantity) {
+              medicineModel.quantity -= quantity;
+          } else {
+              console.error('Not enough quantity in stock:', medicine);
+              continue; // Skip to the next iteration if there's not enough quantity in stock
+          }
+
+          // Increase the sales count
+          medicineModel.sales += quantity;
+
+          // Save the changes to the medicine
+          await medicineModel.save();
+
+          // Log the updated sales and quantity
+          console.log(`Medicine ${medicine} - Updated Sales: ${medicineModel.sales}, Updated Quantity: ${medicineModel.quantity}`);
+      }
+
       // Assuming you have a reference to the Patient model
       // Update the patient's cart (empty the cart)
       // Note: Adjust the field names based on your actual Patient schema
       const patient = await Patient.findByIdAndUpdate(patientId, { $set: { cart: [] } }, { new: true });
-  
+
       res.status(201).json({ message: 'Order created successfully.', order });
-    } catch (error) {
+  } catch (error) {
       console.error('Error creating order:', error);
       res.status(500).json({ error: 'Error creating order.' });
-    }
-  };
+  }
+};
+
   
 
 const cancelOrder = async (req, res) => {
