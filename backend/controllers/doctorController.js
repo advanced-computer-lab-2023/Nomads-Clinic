@@ -164,9 +164,9 @@ const uploadDocument= async (req,res) => {
 
     if (req.doctor) {
         // If a doctor is logged in
-        const doctorId = req.doctor._id;
+        const userId = req.doctor._id;
         const newDocument= new Document({
-            doctorId,
+            userId,
             document
         })
 

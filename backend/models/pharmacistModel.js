@@ -48,6 +48,10 @@ const pharmacistSchema = new Schema({
     approved: {
         type: Boolean,
         default: false
+    },
+    accepted_contract: {
+        type: Boolean,
+        default: false
     }
 }, { timestamps: true });
 

@@ -56,7 +56,7 @@ const doctorSchema = new Schema({
     accepted_contract: {
         type: Boolean,
         default: false
-    },
+    }
 }, { timestamps: true });
 
 
