@@ -32,7 +32,13 @@ export const useLogin = () => {
             dispatch({ type: 'LOGIN', payload: doctorJson })
 
             setIsLoading(false)
-            navigate('/doctor-home')
+            if (doctorJson.approved) {
+                // If approved, navigate to doctor home
+                navigate('/doctor-home');
+            } else {
+                // If not approved, navigate to a different page (e.g., approval pending)
+                navigate('/not-approved-doctor');
+            }
         }
     }
     return { login, isLoading, error }

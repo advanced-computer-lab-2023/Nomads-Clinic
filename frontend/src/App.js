@@ -88,8 +88,9 @@ function App() {
               path="/"
               element={ !user ?  <GuestHome /> : 
               user.type==="patient" ? <Navigate to="patient-home"/> :
-              user.type==="doctor" ?  <Navigate to="doctor-home"/> : 
-              user.type==="pharmacist" ?  <Navigate to="pharmacist-home"/> :  <Navigate to="admin-home"/> }
+              user.type==="doctor" ? (user.approved ? <Navigate to="doctor-home"/> :<Navigate to="not-approved-doctor"/> ) : 
+              user.type==="pharmacist" ? (user.approved ? <Navigate to="pharmacist-home"/> :<Navigate to="not-approved-pharmacist"/> ) :  
+              <Navigate to="admin-home"/> }
             />
             <Route
               path="/patient-login"

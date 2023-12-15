@@ -95,8 +95,10 @@ const loginPharmacist= async (req,res) => {
         const id= pharmacist._id
 
         const type = "pharmacist"
+        
+        const { approved } = pharmacist;
 
-        res.status(200).json({type,id,email,token})
+        res.status(200).json({ type, id, email, token, approved });
     }
     catch(error){
         res.status(400).json({error: error.message})
@@ -117,7 +119,9 @@ const signupPharmacist= async (req,res) => {
 
         const type = "pharmacist"
 
-        res.status(200).json({type,pharmacist,id,email,token})
+        const approved= false;
+
+        res.status(200).json({type,id,email,token,approved})
     }
     catch(error){
         res.status(400).json({error: error.message})

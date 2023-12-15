@@ -124,7 +124,9 @@ const loginDoctor= async (req,res) => {
 
         const type = "doctor"
 
-        res.status(200).json({type,id,email,token})
+        const { approved } = doctor;
+
+        res.status(200).json({ type, id, email, token, approved });
     }
     catch(error){
         res.status(400).json({error: error.message})
@@ -145,7 +147,9 @@ const signupDoctor= async (req,res) => {
 
         const type = "doctor"
 
-        res.status(200).json({type,id,email,token})
+        const approved= false;
+
+        res.status(200).json({type,id,email,token,approved})
     }
     catch(error){
         res.status(400).json({error: error.message})
