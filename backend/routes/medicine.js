@@ -1,7 +1,7 @@
 const express= require('express')
 const router= express.Router()
 const {createMedicine,getAllMedicine,getMedicine,deleteMedicine,updateMedicine} = require('../controllers/medicineController')
-
+const upload = require('../middleware/uploadMedicineImage')
 
 
 const requireAuthPharmacist = require('../middleware/requireAuthPharmacist')
@@ -11,14 +11,8 @@ const requireAuthPatient = require('../middleware/requireAuthPatient')
 
 
 //require Auth for all medicine routes
+router.use(requireAuthPharmacist)
 
-
- 
- const multer = require('multer');
-
-// Create a storage engine for Multer
-const storage = multer.memoryStorage();
-const upload = multer({ storage: storage });
  //Create a new medicine
  router.post('/',upload.single('image'),createMedicine)
 
@@ -32,7 +26,7 @@ const upload = multer({ storage: storage });
  //Delete an medicine
  router.delete('/:id',deleteMedicine)
 
- //Update an medicine
-  router.patch('/:id',updateMedicine)
+ //Update a medicine
+  router.patch('/:id', upload.single('image'),updateMedicine)
 
 module.exports= router

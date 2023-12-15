@@ -33,6 +33,10 @@ const medicineSchema = new Schema({
     pharmacistId: {
         type: String,
         required: true
+    },
+    image: {
+        type: String,
+        required: false
     }
 }, { timestamps: true });
 

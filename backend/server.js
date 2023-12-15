@@ -23,28 +23,28 @@ global.__basedir = __dirname;
 const app= express() 
 
 //middleware
- app.use(express.json())
- app.use((req,res,next) => {
-    console.log(req.path, req.method)
-    next()
- })
+app.use(express.json())
+app.use((req,res,next) => {
+   console.log(req.path, req.method)
+   next()
+})
 
 //routes
 
 app.use('/api/pharmacists',pharmacistRoutes)
 app.use('/api/medicine',medicineRoutes)
- app.use('/api/healthpackages',healthPackageRoutes) 
- app.use('/api/availableTimes',availableTimeRoutes)
- app.use('/api/familymembers',familyMemberRoutes)
- app.use('/api/prescriptions',prescriptionRoutes)
- app.use('/api/appointments',appointmentRoutes)
- app.use('/api/clinicprice',clinicPriceRoutes)
- app.use('/api/patients',patientRoutes)
- app.use('/api/doctors',doctorRoutes)
- app.use('/api/admins',adminRoutes)
- app.use('/api/healthrecords',healthRecordsRoutes)
- //app.use('/uploads', express.static('uploads'));
- //app.use('/api/otp',otpRoutes)
+app.use('/api/healthpackages',healthPackageRoutes) 
+app.use('/api/availableTimes',availableTimeRoutes)
+app.use('/api/familymembers',familyMemberRoutes)
+app.use('/api/prescriptions',prescriptionRoutes)
+app.use('/api/appointments',appointmentRoutes)
+app.use('/api/clinicprice',clinicPriceRoutes)
+app.use('/api/patients',patientRoutes)
+app.use('/api/doctors',doctorRoutes)
+app.use('/api/admins',adminRoutes)
+app.use('/api/healthrecords',healthRecordsRoutes)
+app.use('/uploads', express.static('uploads'));
+//app.use('/api/otp',otpRoutes)
 
 
 //Connect to db

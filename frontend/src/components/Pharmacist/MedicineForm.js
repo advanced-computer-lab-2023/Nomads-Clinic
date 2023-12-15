@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../../hooks/useAuthContext';
+import axios from 'axios'
 
 const MedicineForm = () => {
     const navigate = useNavigate();
@@ -12,6 +13,7 @@ const MedicineForm = () => {
     const [price, setPrice] = useState('')
     const [quantity, setQuantity] = useState('')
     const [error, setError] = useState(null)
+    const [file, setFile] = useState(null)
     const [emptyFields, setEmptyFields] = useState([])
 
     const { user } = useAuthContext()
@@ -49,7 +51,22 @@ const MedicineForm = () => {
             setEmptyFields([...emptyFields, 'quantity']);
         }
 
+        const formData = new FormData()
+        formData.append('image', file)
+        formData.append('medicine', JSON.stringify(medicine))
+        const response = await axios.post('/api/medicine', formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+            'Authorization': `Bearer ${user.token}`
+        }
+        }).then(res => {
+        navigate('/pharmacist-view-medicine');
+        console.log(res)
+        }).catch(err => {
+        setError(err.message)
+        })
 
+        /*
         const response = await fetch('/api/medicine', {
             method: 'POST',
             body: JSON.stringify(medicine),
@@ -69,9 +86,10 @@ const MedicineForm = () => {
             setIngredients('')
             setPrice('')
             setQuantity('');
+            setFile(null);
             console.log('New medicine added');
             navigate('/pharmacist-view-medicine');
-        }
+        }*/
     };
 
     return (
@@ -120,7 +138,12 @@ const MedicineForm = () => {
                 value={quantity}
                 className={emptyFields.includes('quantity') ? 'error' : ''}
             />
-
+            <label>Add image (optional): </label>
+            <input
+                type="file"
+                onChange={(e) => setFile(e.target.files[0])}
+                className=''
+            />
 
             <button>Add Medicine</button>
             {error && <div className="error">{error}</div>}
