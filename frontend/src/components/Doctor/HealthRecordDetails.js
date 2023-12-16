@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {useAuthContext} from '../../hooks/useAuthContext'
 
 
-const DocumentDetails = ({ document }) => {
+const HealthRecordDetails = ({ document }) => {
 
     const [isExpanded, setIsExpanded] = useState(false);
     const {user} = useAuthContext()
@@ -12,8 +12,7 @@ const DocumentDetails = ({ document }) => {
     };
 
     const handleDelete = () => {
-        //console.log("Document id: ",document._id)
-        fetch('/api/doctors/documents/' + document._id, {
+        fetch('/api/healthrecords/' + document._id, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -26,15 +25,15 @@ const DocumentDetails = ({ document }) => {
         });
     }
 
-    const filePath = '/uploads/documents/' + document.document;
+    const filePath = '/uploads/healthRecords/' + document.document;
     return (
         <div className="doctor-details" ><center>
             {!isExpanded && (
                 <div>
                     <embed
                     src={filePath}
-                    width="60px"
-                    height="50px"
+                    width="300px"
+                    height="600px"
                     onClick={toggleExpand}
                     />
                 </div>
@@ -56,4 +55,4 @@ const DocumentDetails = ({ document }) => {
     );
 };
 
-export default DocumentDetails
+export default HealthRecordDetails

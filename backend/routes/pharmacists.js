@@ -1,7 +1,8 @@
 const express = require('express')
 const router = express.Router()
-const { getApprovalPharmacists, getPharmacists, getPharmacist, deletePharmacist, updatePharmacist,updatePharmacistPassword, signupPharmacist, loginPharmacist, uploadDocument, getDocuments } = require('../controllers/pharmacistController')
+const { getApprovalPharmacists, getPharmacists, getPharmacist, deletePharmacist, updatePharmacist,updatePharmacistPassword, signupPharmacist, loginPharmacist, uploadDocument, getDocuments, deleteDocument } = require('../controllers/pharmacistController')
 const upload = require('../middleware/uploadDocument')
+const requireAuthPharmacist = require('../middleware/requireAuthPharmacist')
 
 //Get pharmacists that are still not approved
 router.get('/notapproved', getApprovalPharmacists)
@@ -25,10 +26,13 @@ router.delete('/:id', deletePharmacist)
 router.patch('/:id', updatePharmacist)
 
 //Upload required document
-router.post('/document', upload.single('document'), uploadDocument)
+router.post('/document', requireAuthPharmacist, upload.single('document'), uploadDocument)
 
 //Get a pharmacist's documents
 router.get('/document/:id', getDocuments)
+
+//Delete a pharmacist's document
+router.delete('/document/:id', deleteDocument)
 
 router.patch('/changepassword/:id', updatePharmacistPassword)
 

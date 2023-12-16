@@ -6,6 +6,7 @@ require('dotenv').config()
  const bcrypt = require('bcrypt')
  const validator= require('validator')
  const Document = require('../models/documentModel')
+ const fs = require('fs')
 
 
 
@@ -159,25 +160,27 @@ const uploadDocument= async (req,res) => {
     if(!req.file){
         return res.status(400).json({error: 'No file was uploaded'})
     }
+    if(!req.doctor){
+        return res.status(400).json({error: 'You must be signed in as a doctor'})
+    }
 
     const document = req.file.filename
 
-    if (req.doctor) {
-        // If a doctor is logged in
-        const userId = req.doctor._id;
-        const newDocument= new Document({
-            userId,
-            document
+    // If a doctor is logged in
+    const userId = req.doctor._id;
+    const newDocument= new Document({
+        userId,
+        document
+    })
+    newDocument.save()
+        .then(savedDocument => {
+            console.log('Document saved ', savedDocument.document);
+            res.status(200).json(savedDocument);
         })
-
-        try{
-            await newDocument.save()
-            res.status(201).json(newDocument)
-        }catch(error){
-            console.log(error)
-            res.status(500).json({error: error.message})
-        }
-    }
+        .catch(err => {
+            console.error('Error saving document:', err);
+            res.status(500).json({ error: 'An error occurred while saving the document' });
+        });
 }
 
 //Get a doctor's documents
@@ -197,6 +200,33 @@ const getDocuments= async (req,res) => {
     res.status(200).json(documents)
 }
 
+//Delete a doctor's document
+const deleteDocument = async (req,res) => {
+    const {id}= req.params
+
+    if(!mongoose.Types.ObjectId.isValid(id)){
+        console.log('Invalid ID');
+        return res.status(404).json({error: 'No such doctor'})
+    }
+
+    const document= await Document.findOneAndDelete({_id: id})
+
+    if(!document){
+        console.log('No document found with ID:', id);
+        return res.status(404).json({error: 'No such document'})
+    }
+    const fileName = document.document;
+    const directoryPath = __basedir + "/uploads/documents/";
+
+    try{
+        fs.unlinkSync(directoryPath + fileName) // delete file from path
+        res.status(200).json(healthRecord)
+    }
+    catch(error){
+        res.status(404).json({error: 'Could not delete file'})
+    }
+}
+
 module.exports= {
     getApprovalDoctors,
     getDoctors,
@@ -207,5 +237,6 @@ module.exports= {
     signupDoctor,
     loginDoctor,
     uploadDocument,
-    getDocuments
+    getDocuments,
+    deleteDocument
 }

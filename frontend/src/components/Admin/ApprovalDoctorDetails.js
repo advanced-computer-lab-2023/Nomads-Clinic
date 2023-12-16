@@ -1,7 +1,6 @@
 import React, { useState,  useEffect} from 'react';
 import DocumentDetails from '../../components/Admin/DocumentDetails';
 
-
 const ApprovalDoctorDetails = ({ doctor, onDelete, onApprove }) => {
     const [isExpanded, setIsExpanded] = useState(false);
     const [documents, setDocuments] = useState(null);
@@ -39,9 +38,6 @@ const ApprovalDoctorDetails = ({ doctor, onDelete, onApprove }) => {
             <h4> Doctor Username:{doctor.username}</h4>
             <p><strong>Specialty: </strong>{doctor.specialty}</p>
             <p><strong>Session Price (Per hour): </strong>{doctor.hourlyRate}</p>
-            {documents && documents.map((document) => (
-                    <DocumentDetails key={document._id} document={document}/>
-                ))}
             {isExpanded && (
                 <div>
                     <span className="material-icons-outlined" onClick={handleClick}>delete</span>
@@ -55,7 +51,9 @@ const ApprovalDoctorDetails = ({ doctor, onDelete, onApprove }) => {
                     <div className='second' onClick={handleApproveClick}>
                         <div className="material-icons-outlined">check</div>
                     </div>
-
+                    {documents && documents.map((document) => (
+                    <DocumentDetails key={document._id} document={document}/>
+                ))}
                 </div>
             )}
         </div>

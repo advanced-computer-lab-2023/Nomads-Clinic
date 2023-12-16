@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import DocumentDetails from '../../components/Doctor/DocumentDetails';
+import HealthRecordDetails from '../../components/Doctor/HealthRecordDetails';
 import DoctorHealthRecordModal from '../../components/Doctor/DoctorHealthRecordModal'
 import { useAuthContext } from '../../hooks/useAuthContext';
 import { useNavigate } from 'react-router-dom';
@@ -48,7 +48,7 @@ const DoctorViewHealthRecords = () => {
     <div className="home">
       <div className="doctors">
         {HealthRecords && HealthRecords.map((document) => (
-          <DocumentDetails key={document._id} document={document} />
+          <HealthRecordDetails key={document._id} document={document} />
         ))}
         <div className='add-new-admin-button'>
           <button onClick={handleClick}>Add a medical history document</button>
