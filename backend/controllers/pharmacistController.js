@@ -178,6 +178,23 @@ const uploadDocument= async (req,res) => {
     }
 }
 
+//Get a pharmacist's documents
+const getDocuments= async (req,res) => {
+    const {id}= req.params
+
+    if(!mongoose.Types.ObjectId.isValid(id)){
+        return res.status(404).json({error: 'No such pharmacist'})
+    }
+
+    const documents= await Document.find({userId: id})
+
+    if(!documents){
+        return res.status(404).json({error: 'No such pharmacist'})
+    }
+
+    res.status(200).json(documents)
+}
+
 module.exports= {
     getApprovalPharmacists,
     getPharmacists,
@@ -187,5 +204,6 @@ module.exports= {
     updatePharmacistPassword,
     signupPharmacist,
     loginPharmacist,
-    uploadDocument
+    uploadDocument,
+    getDocuments
 }

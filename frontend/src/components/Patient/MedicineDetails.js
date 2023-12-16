@@ -17,6 +17,7 @@ const MedicineDetails = ({ medicine }) => {
     const toggleExpand = () => {
         setIsExpanded(!isExpanded);
     };
+
     
     return (
         <div className="doctor-details" onClick={toggleExpand}>

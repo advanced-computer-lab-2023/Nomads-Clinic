@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { getApprovalDoctors, getDoctors, getDoctor, deleteDoctor, updateDoctor,updateDoctorPassword, signupDoctor, loginDoctor, uploadDocument } = require('../controllers/doctorController')
+const { getApprovalDoctors, getDoctors, getDoctor, deleteDoctor, updateDoctor,updateDoctorPassword, signupDoctor, loginDoctor, uploadDocument, getDocuments } = require('../controllers/doctorController')
 const upload = require('../middleware/uploadDocument')
 
 //Get doctors that are still not approved
@@ -26,6 +26,9 @@ router.patch('/:id', updateDoctor)
 
 //Upload required document
 router.post('/document', upload.single('document'), uploadDocument)
+
+//Get a doctor's documents
+router.get('/document/:id', getDocuments)
 
 router.patch('/changepassword/:id', updateDoctorPassword)
 
