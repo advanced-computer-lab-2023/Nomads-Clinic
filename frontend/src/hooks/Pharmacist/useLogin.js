@@ -32,7 +32,13 @@ export const useLogin = () => {
             dispatch({ type: 'LOGIN', payload: pharmacistJson })
 
             setIsLoading(false)
-            navigate('/pharmacist-home')
+            if (pharmacistJson.approved) {
+                // If approved, navigate to doctor home
+                navigate('/pharmacist-home');
+            } else {
+                // If not approved, navigate to a different page (e.g., approval pending)
+                navigate('/not-approved-pharmacist');
+            }
         }
     }
     return { login, isLoading, error }

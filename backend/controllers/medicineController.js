@@ -29,7 +29,8 @@ const getMedicine = async (req,res) => {
 }
 //Create a new medicine
 const createMedicine= async (req,res) => {
-    const {name,use,description,ingredients,price,quantity}= req.body
+    
+    const {name,use,description,ingredients,price,quantity} = JSON.parse(req.body.medicine)
 
     let emptyFields = []
 
@@ -57,14 +58,23 @@ const createMedicine= async (req,res) => {
 
     const pharmacistId=req.pharmacist._id
 
-    const image = req.file;
-
-    //add doc to db
-    try{
-        const medicine= await Medicine.create({name,use,description,ingredients,price,quantity,pharmacistId})
-        res.status(200).json(medicine)
-    }catch(error){
-        res.status(400).json({error: error.message})
+    if (req.file){
+        const image = req.file.filename;
+        try{
+            const medicine= await Medicine.create({name,use,description,ingredients,price,quantity,pharmacistId,image})
+            res.status(200).json(medicine)
+        }catch(error){
+            res.status(400).json({error: error.message})
+        }
+    }
+    else{
+        //add doc to db
+        try{
+            const medicine= await Medicine.create({name,use,description,ingredients,price,quantity,pharmacistId})
+            res.status(200).json(medicine)
+        }catch(error){
+            res.status(400).json({error: error.message})
+        }
     }
 }
 
@@ -95,8 +105,14 @@ const updateMedicine= async (req,res) => {
     }
 
     const medicine = await Medicine.findByIdAndUpdate({_id: id}, {
-        ...req.body
+        ...req.body.medicine
     })
+
+    if(req.file){
+        const image = req.file.filename;
+        medicine.image = image;
+        await medicine.save();
+    }
 
     if(!medicine){
         return res.status(404).json({error: 'No such medicine'})

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {Link} from 'react-router-dom'
-import DocumentDetails from '../../components/Patient/DocumentDetails';
+import DocumentDetails from '../../components/Patient/HealthRecordDetails';
 import {useAuthContext} from '../../hooks/useAuthContext'
 
 const PatientViewMedicalHistory = () => {

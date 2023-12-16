@@ -5,6 +5,7 @@ require('dotenv').config()
  const jwt= require('jsonwebtoken')
  const bcrypt = require('bcrypt')
  const validator= require('validator')
+ const Document = require('../models/documentModel')
 
 
 
@@ -123,7 +124,9 @@ const loginDoctor= async (req,res) => {
 
         const type = "doctor"
 
-        res.status(200).json({type,id,email,token})
+        const { approved } = doctor;
+
+        res.status(200).json({ type, id, email, token, approved });
     }
     catch(error){
         res.status(400).json({error: error.message})
@@ -144,12 +147,58 @@ const signupDoctor= async (req,res) => {
 
         const type = "doctor"
 
-        res.status(200).json({type,id,email,token})
+        const approved= false;
+
+        res.status(200).json({type,id,email,token,approved})
     }
     catch(error){
         res.status(400).json({error: error.message})
     }
 
+}
+
+//Upload required document
+const uploadDocument= async (req,res) => {
+
+    if(!req.file){
+        return res.status(400).json({error: 'No file was uploaded'})
+    }
+
+    const document = req.file.filename
+
+    if (req.doctor) {
+        // If a doctor is logged in
+        const userId = req.doctor._id;
+        const newDocument= new Document({
+            userId,
+            document
+        })
+
+        try{
+            await newDocument.save()
+            res.status(201).json(newDocument)
+        }catch(error){
+            console.log(error)
+            res.status(500).json({error: error.message})
+        }
+    }
+}
+
+//Get a doctor's documents
+const getDocuments= async (req,res) => {
+    const {id}= req.params
+
+    if(!mongoose.Types.ObjectId.isValid(id)){
+        return res.status(404).json({error: 'No such doctor'})
+    }
+
+    const documents= await Document.find({userId: id})
+
+    if(!documents){
+        return res.status(404).json({error: 'No such doctor'})
+    }
+
+    res.status(200).json(documents)
 }
 
 module.exports= {
@@ -160,5 +209,7 @@ module.exports= {
     updateDoctor,
     updateDoctorPassword,
     signupDoctor,
-    loginDoctor
+    loginDoctor,
+    uploadDocument,
+    getDocuments
 }
