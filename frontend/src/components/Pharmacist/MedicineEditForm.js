@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuthContext } from '../../hooks/useAuthContext';
+import axios from 'axios'
 
 
 
@@ -13,6 +14,7 @@ const MedicineEditForm = ({ medicineId }) => {
         ingredients: '',
         price: 0
     });
+    const [file, setFile] = useState(null)
 
     useEffect(() => {
         // Fetch the medicine details based on medicineId
@@ -62,6 +64,22 @@ const MedicineEditForm = ({ medicineId }) => {
 
     const handleSave = async () => {
         try {
+            const form = new FormData()
+            form.append('image', file)
+            form.append('medicine', JSON.stringify(formData))
+
+            const response = await axios.patch(`/api/medicine/${medicineId}`, form, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization': `Bearer ${user.token}`
+                }
+                }).then(res => {
+                navigate('/pharmacist-view-medicine');
+                }).catch(err => {
+                console.log(err.message)
+                })
+
+            /*
             const response = await fetch(`/api/medicine/${medicineId}`, {
                 method: 'PATCH',
                 headers: {
@@ -77,7 +95,7 @@ const MedicineEditForm = ({ medicineId }) => {
                 window.location.href = '/pharmacist-view-medicine'; // Replace with your desired URL
             } else {
                 console.error('Error updating medcicine');
-            }
+            }*/
         } catch (error) {
             console.error('Error updating medicine:', error);
         }
@@ -107,6 +125,12 @@ const MedicineEditForm = ({ medicineId }) => {
                 <input type="number" name="price" value={formData.price} onChange={handleInputChange} />
             </div>
             <div>
+                <label>Add image (optional): </label>
+                <input
+                    type="file"
+                    onChange={(e) => setFile(e.target.files[0])}
+                    className=''
+                />
             </div>
             <button onClick={handleSave}>Save</button>
         </div>

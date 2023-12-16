@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const documentSchema = new Schema({
-    doctorId: {
+    userId: {
         type: String,
         required: true
     },

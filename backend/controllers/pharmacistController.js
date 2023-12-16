@@ -155,6 +155,50 @@ const updatePharmacistPassword = async (req, res) => {
     res.status(200).json(pharmacist);
 };
 
+//Upload required document
+const uploadDocument= async (req,res) => {
+
+    if(!req.file){
+        return res.status(400).json({error: 'No file was uploaded'})
+    }
+
+    const document = req.file.filename
+
+    if (req.pharmacist) {
+        // If a pharmacist is logged in
+        const userId = req.pharmacist._id;
+        const newDocument= new Document({
+            userId,
+            document
+        })
+
+        try{
+            await newDocument.save()
+            res.status(201).json(newDocument)
+        }catch(error){
+            console.log(error)
+            res.status(500).json({error: error.message})
+        }
+    }
+}
+
+//Get a pharmacist's documents
+const getDocuments= async (req,res) => {
+    const {id}= req.params
+
+    if(!mongoose.Types.ObjectId.isValid(id)){
+        return res.status(404).json({error: 'No such pharmacist'})
+    }
+
+    const documents= await Document.find({userId: id})
+
+    if(!documents){
+        return res.status(404).json({error: 'No such pharmacist'})
+    }
+
+    res.status(200).json(documents)
+}
+
 module.exports= {
     getApprovalPharmacists,
     getPharmacists,
@@ -163,5 +207,7 @@ module.exports= {
     updatePharmacist,
     updatePharmacistPassword,
     signupPharmacist,
-    loginPharmacist
+    loginPharmacist,
+    uploadDocument,
+    getDocuments
 }

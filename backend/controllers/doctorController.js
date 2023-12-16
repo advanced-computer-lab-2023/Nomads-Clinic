@@ -168,9 +168,9 @@ const uploadDocument= async (req,res) => {
 
     if (req.doctor) {
         // If a doctor is logged in
-        const doctorId = req.doctor._id;
+        const userId = req.doctor._id;
         const newDocument= new Document({
-            doctorId,
+            userId,
             document
         })
 
@@ -184,6 +184,23 @@ const uploadDocument= async (req,res) => {
     }
 }
 
+//Get a doctor's documents
+const getDocuments= async (req,res) => {
+    const {id}= req.params
+
+    if(!mongoose.Types.ObjectId.isValid(id)){
+        return res.status(404).json({error: 'No such doctor'})
+    }
+
+    const documents= await Document.find({userId: id})
+
+    if(!documents){
+        return res.status(404).json({error: 'No such doctor'})
+    }
+
+    res.status(200).json(documents)
+}
+
 module.exports= {
     getApprovalDoctors,
     getDoctors,
@@ -193,5 +210,6 @@ module.exports= {
     updateDoctorPassword,
     signupDoctor,
     loginDoctor,
-    uploadDocument
+    uploadDocument,
+    getDocuments
 }

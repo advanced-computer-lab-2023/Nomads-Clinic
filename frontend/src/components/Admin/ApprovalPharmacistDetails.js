@@ -12,7 +12,7 @@ const ApprovalPharmacistDetails = ({ pharmacist, onDelete, onApprove }) => {
         onDelete(pharmacist._id);
     };
     const handleApproveClick = () => {
-        // Call the onDelete function passed as a prop with the workout ID
+        // Call the onApprove function passed as a prop with the workout ID
         onApprove(pharmacist._id);
     };
 
