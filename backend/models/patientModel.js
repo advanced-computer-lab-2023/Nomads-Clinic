@@ -60,7 +60,25 @@ const patientSchema = new Schema({
     healthPackage: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'HealthPackage'
-    }
+    },
+    cart: [
+        {
+            medicine: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Medicine', 
+                required: true
+            },
+            quantity: { type: Number, required: true },
+            price: { type: Number, default: 0 }
+        }
+    ],
+    addresses: [
+        {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'Address',
+        },
+      ],
+
 }, { timestamps: true });
 
 
