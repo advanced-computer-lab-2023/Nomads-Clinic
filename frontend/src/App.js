@@ -66,12 +66,14 @@ import PatientSignup from './pages/Patient/PatientSignup';
 import PatientViewMedicine from './pages/Patient/PatientViewMedicine';
 import PatientCheckout from './pages/Patient/PatientCheckout';
 import PatientViewOrders from './pages/Patient/PatientViewOrders';
-
+import ViewMyDoctors from './pages/Patient/ViewMyDoctors';
 
 
 
 
 import Navbar from './components/Navbar';
+import ChatComponent from './components/Patient/ChatComponent';
+import ChatPage from './components/Doctor/ChatPage';
 
 
 function App() {
@@ -331,6 +333,18 @@ function App() {
             <Route
               path="/orders"
               element={<PatientViewOrders/>}
+            />
+             <Route
+              path="/chat"
+              element={<ChatComponent/>}
+            />
+             <Route
+              path='/chat/:roomId'
+              element={<ChatPage/>}
+            />
+            <Route
+              path="/view-my-doctors"
+              element={<ViewMyDoctors/>}
             />
           </Routes>
         </div>

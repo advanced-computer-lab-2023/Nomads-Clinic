@@ -4,7 +4,7 @@ const ClinicPatientHome = () => {
 
   return (
 
-    <div className="admin-home" style={{ display: 'flex' }}>
+    <div className="admin-home" style={{ display: 'flex', flexDirection: 'column' }}>
       <div className="home-button">
         <Link to="/patient-view-doctors">
           <button>View All Doctors</button>
@@ -48,6 +48,11 @@ const ClinicPatientHome = () => {
       <div className="home-button">
         <Link to="/patient-subscribed-healthPackage">
           <button>View Subscribed Health Package </button>
+        </Link>
+      </div>
+      <div className="home-button">
+        <Link to="/view-my-doctors">
+          <button>View my doctors </button>
         </Link>
       </div>
     </div>

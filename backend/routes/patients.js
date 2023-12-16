@@ -4,7 +4,7 @@ const { getPatients, getPatient, deletePatient, updatePatient,updatePatientPassw
   getAllOrdersForPatient
 } = require('../controllers/patientController')
 const router= express.Router()
-const stripe = require('stripe')('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');
+const stripe = require('stripe')('sk_test_51MRMg1FxdCIg2t1cNQZUGC9De4d01a7MUexouUFc5XLcKlnDuWHUdAvJwC9Ctyviudov6YU2imI8fXlu92r6k1l100UUjFwcb7');
 //Get all patients
 router.get('/', getPatients)
 
