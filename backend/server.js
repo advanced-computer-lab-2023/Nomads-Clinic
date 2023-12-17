@@ -27,7 +27,7 @@ global.__basedir = __dirname;
 const app = express();
 app.use(cors({
   origin: "http://localhost:3000",
-  methods: ["GET", "POST"],
+  methods: "*",
   credentials: true
 }));
 
@@ -35,7 +35,7 @@ const server = http.createServer(app);
 const io = socketIO(server, {
   cors: {
     origin: "http://localhost:3000",
-    methods: ["GET", "POST"],
+    methods: "*",
     credentials: true,
   },
   transports: ['websocket'], // Explicitly specify the 'websocket' transport

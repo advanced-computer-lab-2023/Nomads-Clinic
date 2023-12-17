@@ -82,7 +82,7 @@ const PatientBookAppointment= () => {
             <div className="doctors">
                 {availableTimes && availableTimes.map((availableTime) => (
                     <AvailableTimeDetails
-                        key={availableTime._id} availableTime={availableTime} onBook={handleBook} />
+                        key={availableTime._id}doctor={doctor} availableTime={availableTime} onBook={handleBook} />
                 ))}
                 {error && error.message}
             </div>

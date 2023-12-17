@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useNavigate } from 'react';
 import { useAuthContext } from '../../hooks/useAuthContext';
 import axios from 'axios'
 
@@ -7,6 +7,7 @@ import axios from 'axios'
 const MedicineEditForm = ({ medicineId }) => {
     const [medicine, setMedicine] = useState({});
     const {user} = useAuthContext()
+    const navigate =useNavigate();
     const [formData, setFormData] = useState({
         name: '',
         use: '',

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PatientDetails from '../../components/Doctor/PatientDetails';
 import { useAuthContext } from '../../hooks/useAuthContext';
 import createOrJoinRoom from '../../components/Doctor/Room';
-import { set } from 'mongoose';
+
 import { useNavigate } from 'react-router-dom';
 
 
